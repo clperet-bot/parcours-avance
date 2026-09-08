@@ -98,8 +98,8 @@
   .match-item.matched{background:var(--sage);color:#fff;cursor:default;opacity:.85;}
   .match-item.wrong{background:var(--rust);color:#fff;}
 
-  .memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
-  .mem-card{aspect-ratio:1;background:var(--paper-dim);border-radius:6px;cursor:pointer;
+  .memory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+  .mem-card{min-width:0;min-height:64px;background:var(--paper-dim);border-radius:6px;cursor:pointer;
     display:flex;align-items:center;justify-content:center;text-align:center;
     font-size:11px;font-weight:500;padding:6px;color:var(--ink);user-select:none;}
   .mem-card.selected{border:2px solid var(--ochre);background:#F1E3C8;}
