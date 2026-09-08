@@ -5,159 +5,203 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Parcours d'enquêteur — Niveau avancé</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#11151c">
+<meta name="theme-color" content="#EFEEE7">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Enquête MELEC">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#11151c; --surface:#1b212c; --surface-2:#232b38;
-    --card:#f4f2ee; --card-dim:#e7e3da; --ink:#1a1f27; --muted:#8b93a3;
-    --amber:#f5a623; --amber-deep:#c9860f; --teal:#2fd1b8; --coral:#ff6f66; --line:#2c3444;
+    --paper:#EFEEE7; --paper-dim:#E3E1D6; --card:#FFFFFF;
+    --ink:#22292F; --ink-soft:#4A5560; --muted:#7C8790;
+    --navy:#1F3A4D; --navy-deep:#142834;
+    --ochre:#B8862F; --sage:#5F7D5A; --rust:#A13E2E;
+    --line:#D6D2C4;
   }
   *{box-sizing:border-box; touch-action:manipulation;}
-  body{margin:0;background:var(--bg);color:#e9ecf1;font-family:'Inter',system-ui,sans-serif;line-height:1.55;}
-  h1,h2,h3{font-family:'Space Grotesk',system-ui,sans-serif;}
-  .wrap{max-width:760px;margin:0 auto;padding:36px 20px 90px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Work Sans',system-ui,sans-serif;line-height:1.55;}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 20px 90px;}
 
-  .masthead{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
-  .badge-icon{width:46px;height:46px;border-radius:16px;background:var(--amber);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;}
-  .masthead .eyebrow{font-size:13px;color:var(--teal);font-weight:600;margin-bottom:2px;}
-  .masthead h1{font-size:23px;margin:0;font-weight:700;color:#fff;}
+  /* ---------- LANDING SCREEN ---------- */
+  #screen-landing{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px 24px;text-align:center;}
+  .landing-mark{width:56px;height:56px;border:2px solid var(--navy);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;}
+  .landing-eyebrow{font-size:13px;color:var(--ochre);font-weight:600;margin-bottom:6px;letter-spacing:.02em;}
+  #screen-landing h1{font-size:30px;margin:0 0 8px;color:var(--navy-deep);max-width:340px;}
+  .landing-sub{font-size:14.5px;color:var(--ink-soft);max-width:320px;margin:0 0 32px;}
 
-  .id-row{display:flex;gap:10px;align-items:center;margin-bottom:24px;font-size:14px;}
-  .id-row label{color:var(--muted);}
-  .id-row input{flex:1;background:var(--surface);border:1px solid var(--line);color:#fff;
-    padding:11px 16px;border-radius:14px;font-size:14px;font-family:'Inter',sans-serif;}
-  .id-row input:focus{outline:2px solid var(--amber);outline-offset:1px;}
-  .id-row select{flex:1;background:var(--surface);border:1px solid var(--line);color:#fff;
-    padding:11px 16px;border-radius:14px;font-size:14px;font-family:'Inter',sans-serif;}
-  .id-row select:focus{outline:2px solid var(--amber);outline-offset:1px;}
+  .field-group{width:100%;max-width:320px;text-align:left;margin-bottom:18px;}
+  .field-group label{display:block;font-size:12.5px;color:var(--ink-soft);margin-bottom:6px;}
+  .field-group select{
+    width:100%;background:transparent;border:none;border-bottom:2px solid var(--line);
+    padding:10px 2px;font-size:16px;font-family:'Work Sans',sans-serif;color:var(--ink);
+    border-radius:0;appearance:none;-webkit-appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%234A5560' stroke-width='2' fill='none'/></svg>");
+    background-repeat:no-repeat;background-position:right 4px center;
+  }
+  .field-group select:focus{outline:none;border-bottom-color:var(--navy);}
+  .field-group select:disabled{color:var(--muted);}
 
-  .stepper{display:flex;align-items:center;margin-bottom:8px;}
+  .btn-start{
+    margin-top:10px;background:var(--navy);color:#fff;border:none;
+    padding:14px 36px;font-size:15px;font-weight:600;border-radius:4px;cursor:pointer;
+    font-family:'Work Sans',sans-serif;letter-spacing:.01em;
+  }
+  .btn-start:disabled{background:var(--line);color:var(--muted);cursor:default;}
+
+  .teacher-link{margin-top:40px;font-size:12.5px;color:var(--muted);background:none;border:none;
+    cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:'Work Sans',sans-serif;}
+
+  /* ---------- APP SCREEN ---------- */
+  #screen-app{display:none;}
+
+  .masthead{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:8px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+  .masthead .who{font-size:13px;color:var(--ink-soft);}
+  .masthead .who b{color:var(--ink);}
+  .masthead h1{font-size:19px;margin:0;color:var(--navy-deep);}
+  .switch-btn{font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:2px;}
+
+  .stepper{display:flex;align-items:center;margin:22px 0 6px;}
   .step-node{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative;cursor:pointer;}
-  .step-circle{width:32px;height:32px;border-radius:50%;background:var(--surface);border:2px solid var(--line);
-    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--muted);
-    font-family:'Space Grotesk',sans-serif;}
+  .step-circle{width:30px;height:30px;border-radius:50%;background:var(--card);border:2px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--muted);font-family:'Fraunces',serif;}
   .step-label{font-size:10px;color:var(--muted);text-align:center;}
-  .step-node.active .step-circle{background:var(--amber);border-color:var(--amber);color:var(--ink);}
-  .step-node.active .step-label{color:#fff;font-weight:600;}
-  .step-node.visited .step-circle{background:var(--teal);border-color:var(--teal);color:var(--ink);}
-  .step-connector{position:absolute;top:16px;left:-50%;width:100%;height:2px;background:var(--line);z-index:-1;}
+  .step-node.active .step-circle{background:var(--ochre);border-color:var(--ochre);color:#fff;}
+  .step-node.active .step-label{color:var(--ink);font-weight:600;}
+  .step-node.visited .step-circle{background:var(--sage);border-color:var(--sage);color:#fff;}
+  .step-connector{position:absolute;top:15px;left:-50%;width:100%;height:2px;background:var(--line);z-index:-1;}
   .step-node:first-child .step-connector{display:none;}
+  @media (max-width:480px){ .step-label{display:none;} }
 
   .stage{display:none;}
-  .stage.visible{display:block;animation:fade .25s ease;}
-  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+  .stage.visible{display:block;animation:fade .2s ease;}
+  @keyframes fade{from{opacity:0;}to{opacity:1;}}
 
-  h2{font-size:20px;margin:0 0 6px;color:#fff;font-weight:600;}
-  p.lead{font-size:14px;color:var(--muted);margin:0 0 18px;}
+  h2{font-size:20px;margin:26px 0 6px;color:var(--navy-deep);}
+  p.lead{font-size:14px;color:var(--ink-soft);margin:0 0 16px;}
 
-  .card{background:var(--card);color:var(--ink);border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px rgba(0,0,0,.35);}
-  .card + .card{margin-top:16px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 22px;}
+  .card + .card{margin-top:14px;}
 
-  /* Activity tabs */
-  .tabs{display:flex;gap:8px;margin-bottom:14px;}
-  .tab-btn{background:var(--surface);color:var(--muted);border:1px solid var(--line);
-    padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;}
-  .tab-btn.active{background:var(--teal);color:var(--ink);border-color:var(--teal);}
+  .tabs{display:flex;gap:6px;margin-bottom:14px;}
+  .tab-btn{background:transparent;color:var(--ink-soft);border:1px solid var(--line);
+    padding:8px 14px;border-radius:4px;font-size:12.5px;font-weight:500;cursor:pointer;font-family:'Work Sans',sans-serif;}
+  .tab-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
 
-  /* Memory grid (cards always face-visible) */
-  .memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
-  .mem-card{aspect-ratio:1;background:var(--card-dim);border-radius:14px;cursor:pointer;
+  .match-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .match-item{background:var(--paper-dim);border:1.5px solid transparent;border-radius:6px;
+    padding:9px 11px;font-size:12.5px;margin-bottom:7px;cursor:pointer;color:var(--ink);}
+  .match-item.selected{border-color:var(--ochre);background:#F1E3C8;}
+  .match-item.matched{background:var(--sage);color:#fff;cursor:default;opacity:.85;}
+  .match-item.wrong{background:var(--rust);color:#fff;}
+
+  .memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+  .mem-card{aspect-ratio:1;background:var(--paper-dim);border-radius:6px;cursor:pointer;
     display:flex;align-items:center;justify-content:center;text-align:center;
-    font-size:11.5px;font-weight:500;padding:6px;color:var(--ink);user-select:none;}
-  .mem-card.selected{border:2px solid var(--amber);background:#f3dfb0;}
-  .mem-card.matched{background:var(--teal);color:var(--ink);cursor:default;opacity:.85;}
-  .mem-card.wrong{background:var(--coral);color:#fff;}
+    font-size:11px;font-weight:500;padding:6px;color:var(--ink);user-select:none;}
+  .mem-card.selected{border:2px solid var(--ochre);background:#F1E3C8;}
+  .mem-card.matched{background:var(--sage);color:#fff;cursor:default;opacity:.85;}
+  .mem-card.wrong{background:var(--rust);color:#fff;}
 
-  /* Matching game (two columns) */
-  .match-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .match-item{background:var(--card-dim);border:1.5px solid transparent;border-radius:12px;
-    padding:10px 12px;font-size:12.5px;margin-bottom:8px;cursor:pointer;color:var(--ink);}
-  .match-item.selected{border-color:var(--amber);background:#f3dfb0;}
-  .match-item.matched{background:var(--teal);color:var(--ink);cursor:default;opacity:.85;}
-  .match-item.wrong{background:var(--coral);color:#fff;}
-  .mini-actions{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
-  .mem-status{font-size:13px;color:#5b6472;font-weight:500;}
+  .mini-actions{display:flex;justify-content:space-between;align-items:center;margin-top:12px;}
+  .mem-status{font-size:12.5px;color:var(--ink-soft);}
 
-  /* Reference panel */
-  .ref-panel{margin-bottom:18px;}
-  .ref-panel summary{cursor:pointer;font-weight:600;font-size:14px;color:#fff;padding:4px 0;}
+  .ref-panel{margin-bottom:16px;}
+  .ref-panel summary{cursor:pointer;font-weight:600;font-size:13.5px;color:var(--navy-deep);padding:4px 0;}
   .ref-block{margin-top:10px;}
-  .ref-vocab{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;}
-  .ref-tag{background:var(--surface-2);border:1px solid var(--line);padding:5px 11px;border-radius:999px;font-size:12.5px;color:#dfe3ea;}
-  .ref-tag b{color:var(--amber);font-weight:600;}
+  .ref-vocab{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+  .ref-tag{background:var(--paper-dim);border:1px solid var(--line);padding:5px 10px;border-radius:4px;font-size:12px;color:var(--ink-soft);}
+  .ref-tag b{color:var(--ochre);font-weight:600;}
   .ref-struct{list-style:none;margin:0;padding:0;}
-  .ref-struct li{padding:7px 0;border-bottom:1px solid var(--line);font-size:13px;color:#dfe3ea;}
+  .ref-struct li{padding:7px 0;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--ink-soft);}
   .ref-struct li:last-child{border-bottom:none;}
-  .ref-struct .fr{color:var(--muted);font-size:12px;}
+  .ref-struct .fr{color:var(--muted);font-size:11.5px;}
 
-  /* Suspects */
-  .suspect-card{background:var(--card-dim);border-radius:14px;padding:14px 16px;margin-bottom:10px;}
-  .suspect-card h4{margin:0 0 4px;font-size:14.5px;color:var(--ink);font-family:'Space Grotesk',sans-serif;}
-  .suspect-card p{margin:0 0 10px;font-size:12.5px;color:#5b6472;}
-  .suspect-card textarea{width:100%;background:#fff;border:1.5px solid var(--line);border-radius:10px;
-    padding:10px 12px;font-family:'Inter',sans-serif;font-size:13.5px;resize:vertical;}
-  .suspect-card textarea:focus{outline:2px solid var(--amber);outline-offset:1px;}
+  .suspect-card{background:var(--paper-dim);border-radius:8px;padding:13px 15px;margin-bottom:9px;}
+  .suspect-card h4{margin:0 0 4px;font-size:14px;color:var(--navy-deep);font-family:'Fraunces',serif;}
+  .suspect-card p{margin:0 0 9px;font-size:12px;color:var(--muted);}
+  .suspect-card textarea{width:100%;background:#fff;border:1.5px solid var(--line);border-radius:6px;
+    padding:9px 11px;font-family:'Work Sans',sans-serif;font-size:13px;resize:vertical;}
+  .suspect-card textarea:focus{outline:none;border-color:var(--navy);}
 
-  /* Sheet fields */
-  .sheet-field{margin-bottom:16px;}
-  .sheet-field label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;}
-  .sheet-field textarea, .sheet-field input{width:100%;background:#fff;color:var(--ink);border:1.5px solid var(--card-dim);
-    border-radius:12px;padding:12px 14px;font-family:'Inter',sans-serif;font-size:14px;resize:vertical;}
-  .sheet-field textarea:focus, .sheet-field input:focus{outline:2px solid var(--amber);outline-offset:1px;}
+  .sheet-field{margin-bottom:14px;}
+  .sheet-field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .sheet-field textarea, .sheet-field input{width:100%;background:#fff;color:var(--ink);border:1.5px solid var(--line);
+    border-radius:6px;padding:10px 12px;font-family:'Work Sans',sans-serif;font-size:13.5px;resize:vertical;}
+  .sheet-field textarea:focus, .sheet-field input:focus{outline:none;border-color:var(--navy);}
 
-  .task-steps{font-size:14px;color:var(--muted);}
-  .task-steps ol{padding-left:20px;margin:10px 0 0;}
-  .task-steps li{margin-bottom:6px;}
+  .task-steps{font-size:13.5px;color:var(--ink-soft);}
+  .task-steps ol{padding-left:20px;margin:8px 0 0;}
+  .task-steps li{margin-bottom:5px;}
 
-  textarea.report-text{width:100%;min-height:220px;background:var(--card);color:var(--ink);
-    border:1.5px solid var(--card-dim);border-radius:18px;padding:18px;
-    font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;resize:vertical;}
-  textarea.report-text:focus{outline:2px solid var(--amber);outline-offset:1px;}
+  textarea.report-text{width:100%;min-height:210px;background:#fff;color:var(--ink);
+    border:1.5px solid var(--line);border-radius:8px;padding:16px;
+    font-family:'Work Sans',sans-serif;font-size:14.5px;line-height:1.6;resize:vertical;}
+  textarea.report-text:focus{outline:none;border-color:var(--navy);}
 
-  .actions{display:flex;justify-content:flex-end;margin-top:16px;gap:10px;}
-  button{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;background:var(--amber);
-    color:var(--ink);border:none;padding:12px 26px;border-radius:999px;cursor:pointer;}
-  button.ghost{background:transparent;color:var(--amber);border:1.5px solid var(--amber);}
-  button.small{padding:8px 16px;font-size:12.5px;}
+  .actions{display:flex;justify-content:flex-end;margin-top:14px;gap:10px;}
+  button.primary{font-family:'Work Sans',sans-serif;font-size:13.5px;font-weight:600;background:var(--navy);
+    color:#fff;border:none;padding:11px 22px;border-radius:4px;cursor:pointer;}
+  button.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy);
+    padding:9px 18px;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Work Sans',sans-serif;}
+  button.small{padding:7px 14px;font-size:12px;}
 
-  .feedback{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px;}
-  .feedback h3{margin:0 0 12px;font-size:15px;color:var(--amber);}
-  .scores{display:flex;gap:20px;margin-bottom:14px;flex-wrap:wrap;}
-  .score{font-size:12px;color:var(--muted);}
-  .score b{display:block;font-size:22px;color:#fff;font-family:'Space Grotesk',sans-serif;}
-  .feedback p{font-size:14px;color:#c9cfda;margin:6px 0;}
+  .feedback{margin-top:16px;background:var(--paper-dim);border:1px solid var(--line);border-radius:8px;padding:16px 18px;}
+  .feedback h3{margin:0 0 10px;font-size:14px;color:var(--navy-deep);}
+  .scores{display:flex;gap:18px;margin-bottom:12px;flex-wrap:wrap;}
+  .score{font-size:11.5px;color:var(--muted);}
+  .score b{display:block;font-size:19px;color:var(--ink);font-family:'Fraunces',serif;}
+  .feedback p{font-size:13.5px;color:var(--ink-soft);margin:6px 0;}
 
-  .teacher-toggle{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);text-align:center;}
-  .teacher-toggle button{margin-top:10px;}
-  .report-row{text-align:left;background:var(--surface);border:1px solid var(--line);
-    padding:13px 16px;margin-top:8px;border-radius:14px;font-size:13px;color:#c9cfda;}
-  .report-row b{color:#fff;}
-  .status{font-size:13px;color:var(--amber);margin-top:10px;font-weight:500;}
-  @media (max-width:480px){ .step-label{display:none;} }
+  .status{font-size:12.5px;color:var(--ochre);margin-top:8px;font-weight:500;}
+
+  /* ---------- TEACHER MODAL ---------- */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(20,40,52,.55);display:none;
+    align-items:flex-start;justify-content:center;padding:40px 16px;z-index:50;overflow-y:auto;}
+  .modal-backdrop.visible{display:flex;}
+  .modal{background:var(--card);border-radius:10px;max-width:520px;width:100%;padding:24px 24px 28px;}
+  .modal h2{margin-top:0;font-size:18px;}
+  .modal-close{float:right;background:none;border:none;font-size:20px;color:var(--muted);cursor:pointer;line-height:1;}
+  .report-row{text-align:left;background:var(--paper-dim);border:1px solid var(--line);
+    padding:11px 13px;margin-top:7px;border-radius:6px;font-size:12.5px;color:var(--ink-soft);}
+  .report-row b{color:var(--ink);}
 </style>
 </head>
 <body>
+
+<!-- LANDING SCREEN -->
+<div id="screen-landing">
+  <div class="landing-mark">🔍</div>
+  <div class="landing-eyebrow">Lincoln High School — Confidential</div>
+  <h1>Parcours d'enquêteur</h1>
+  <p class="landing-sub">Niveau avancé — même enquête que ta classe, avec des exigences plus poussées.</p>
+
+  <div class="field-group">
+    <label for="landing-classe">Classe</label>
+    <select id="landing-classe"><option value="">Chargement…</option></select>
+  </div>
+  <div class="field-group">
+    <label for="landing-eleve">Ton nom</label>
+    <select id="landing-eleve" disabled><option value="">Choisis d'abord ta classe</option></select>
+  </div>
+
+  <button class="btn-start" id="btn-start" disabled>Commencer</button>
+  <button class="teacher-link" id="teacher-btn">Espace enseignant</button>
+</div>
+
+<!-- APP SCREEN -->
+<div id="screen-app">
 <div class="wrap">
 
   <div class="masthead">
-    <div class="badge-icon">🔍</div>
     <div>
-      <div class="eyebrow">Lincoln High School — Confidential</div>
-      <h1>Parcours d'enquêteur — Niveau avancé</h1>
+      <h1>Parcours d'enquêteur</h1>
+      <div class="who">Niveau avancé — <b id="masthead-who">—</b></div>
     </div>
-  </div>
-
-  <div class="id-row">
-    <label for="student-select">Élève :</label>
-    <select id="student-select"><option value="">Chargement…</option></select>
+    <button class="switch-btn" id="switch-user-btn">Changer</button>
   </div>
 
   <div class="stepper" id="stepper">
@@ -167,23 +211,23 @@
     <div class="step-node" data-stage="4"><div class="step-connector"></div><div class="step-circle">4</div><div class="step-label">Fiche</div></div>
     <div class="step-node" data-stage="5"><div class="step-connector"></div><div class="step-circle">5</div><div class="step-label">Rapport</div></div>
   </div>
-  <p class="lead" style="margin-bottom:26px;">Navigue librement entre les étapes, rejoue les activités autant que tu veux.</p>
+  <p class="lead" style="margin-bottom:22px;">Navigue librement entre les étapes, rejoue les activités autant que tu veux.</p>
 
-  <!-- STAGE 1: VOCAB MATCHING -->
+  <!-- STAGE 1: VOCAB -->
   <div class="stage" id="stage-1">
     <h2>Étape 1 — Vocabulaire</h2>
     <p class="lead">Deux façons de t'entraîner, rejoue-les autant de fois que tu veux.</p>
 
     <div class="tabs">
-      <button class="tab-btn active" data-activity="mem">🧠 Jeu de mémoire</button>
-      <button class="tab-btn" data-activity="match">🔗 Association</button>
+      <button class="tab-btn active" data-activity="mem">Jeu de mémoire</button>
+      <button class="tab-btn" data-activity="match">Association</button>
     </div>
 
     <div class="card" id="activity-vocab-mem">
       <div class="memory-grid" id="vocab-memory-grid"></div>
       <div class="mini-actions">
         <div class="mem-status" id="vocab-mem-status">0 / 0 paires trouvées</div>
-        <button class="ghost small" id="replay-vocab-mem">🔄 Rejouer</button>
+        <button class="ghost small" id="replay-vocab-mem">Rejouer</button>
       </div>
     </div>
 
@@ -194,14 +238,14 @@
       </div>
       <div class="mini-actions">
         <div class="mem-status" id="vocab-status">0 / 0 paires trouvées</div>
-        <button class="ghost small" id="replay-vocab">🔄 Rejouer</button>
+        <button class="ghost small" id="replay-vocab">Rejouer</button>
       </div>
     </div>
 
-    <div class="actions"><button id="to-stage-2">Continuer →</button></div>
+    <div class="actions"><button class="primary" id="to-stage-2">Continuer</button></div>
   </div>
 
-  <!-- STAGE 2: STRUCTURES MATCHING -->
+  <!-- STAGE 2: STRUCTURES -->
   <div class="stage" id="stage-2">
     <h2>Étape 2 — Structures</h2>
     <p class="lead">Même principe : associe chaque phrase à sa traduction.</p>
@@ -212,27 +256,27 @@
       </div>
       <div class="mini-actions">
         <div class="mem-status" id="struct-status">0 / 0 paires trouvées</div>
-        <button class="ghost small" id="replay-struct">🔄 Rejouer</button>
+        <button class="ghost small" id="replay-struct">Rejouer</button>
       </div>
     </div>
-    <div class="actions"><button id="to-stage-3">Continuer →</button></div>
+    <div class="actions"><button class="primary" id="to-stage-3">Continuer</button></div>
   </div>
 
-  <!-- STAGE 3: SUSPECT INTERROGATIONS -->
+  <!-- STAGE 3: INTERROGATIONS -->
   <div class="stage" id="stage-3">
     <h2>Étape 3 — Interrogatoires des suspects</h2>
     <p class="lead">Entraîne-toi d'abord sur le vocabulaire, puis note en anglais ce que tu découvres sur chaque suspect.</p>
 
     <div class="tabs">
-      <button class="tab-btn active" id="tab-interro-mem">🧠 Jeu de mémoire</button>
-      <button class="tab-btn" id="tab-interro-match">🔗 Association</button>
+      <button class="tab-btn active" id="tab-interro-mem">Jeu de mémoire</button>
+      <button class="tab-btn" id="tab-interro-match">Association</button>
     </div>
 
     <div class="card" id="activity-interro-mem">
       <div class="memory-grid" id="interro-memory-grid"></div>
       <div class="mini-actions">
         <div class="mem-status" id="interro-mem-status">0 / 0 paires trouvées</div>
-        <button class="ghost small" id="replay-interro-mem">🔄 Rejouer</button>
+        <button class="ghost small" id="replay-interro-mem">Rejouer</button>
       </div>
     </div>
 
@@ -243,37 +287,33 @@
       </div>
       <div class="mini-actions">
         <div class="mem-status" id="interro-match-status">0 / 0 paires trouvées</div>
-        <button class="ghost small" id="replay-interro-match">🔄 Rejouer</button>
+        <button class="ghost small" id="replay-interro-match">Rejouer</button>
       </div>
     </div>
 
     <details class="ref-panel">
-      <summary>📎 Structures à réutiliser</summary>
-      <div class="ref-block">
-        <ul class="ref-struct" id="ref-struct-3"></ul>
-      </div>
+      <summary>Structures à réutiliser</summary>
+      <div class="ref-block"><ul class="ref-struct" id="ref-struct-3"></ul></div>
     </details>
 
-    <p class="lead" style="margin-top:8px;"><strong style="color:#fff;">Consigne :</strong> note en anglais ce que tu découvres sur chaque suspect (où il/elle était, avec qui, si son alibi tient).</p>
+    <p class="lead" style="margin-top:6px;"><strong style="color:var(--ink);">Consigne :</strong> note en anglais ce que tu découvres sur chaque suspect (où il/elle était, avec qui, si son alibi tient).</p>
 
     <div id="suspects-list"></div>
 
-    <div class="actions">
-      <button id="submit-interro">Faire corriger</button>
-    </div>
+    <div class="actions"><button class="primary" id="submit-interro">Faire corriger</button></div>
     <div id="interro-status" class="status" style="display:none;"></div>
     <div id="interro-feedback"></div>
 
-    <div class="actions"><button id="to-stage-4">Continuer →</button></div>
+    <div class="actions"><button class="primary" id="to-stage-4">Continuer</button></div>
   </div>
 
-  <!-- STAGE 4: INVESTIGATION SHEET -->
+  <!-- STAGE 4: SHEET -->
   <div class="stage" id="stage-4">
     <h2>Étape 4 — Fiche d'investigation</h2>
     <p class="lead">Réutilise le vocabulaire et les structures pour compléter chaque partie, en anglais.</p>
 
     <details class="ref-panel">
-      <summary>📎 Vocabulaire et structures à réutiliser</summary>
+      <summary>Vocabulaire et structures à réutiliser</summary>
       <div class="ref-block">
         <div class="ref-vocab" id="ref-vocab-4"></div>
         <ul class="ref-struct" id="ref-struct-4"></ul>
@@ -289,19 +329,19 @@
       <div class="sheet-field"><label>Evidence #4</label><textarea id="f-evidence4" rows="2"></textarea></div>
       <div class="sheet-field"><label>Evidence #5</label><textarea id="f-evidence5" rows="2"></textarea></div>
       <div class="sheet-field"><label>Final statement</label><textarea id="f-conclusion" rows="2"></textarea></div>
-      <div class="actions"><button id="submit-sheet">Faire corriger</button></div>
+      <div class="actions"><button class="primary" id="submit-sheet">Faire corriger</button></div>
       <div id="sheet-status" class="status" style="display:none;"></div>
       <div id="sheet-feedback"></div>
     </div>
 
-    <div class="actions"><button id="to-stage-5">Continuer →</button></div>
+    <div class="actions"><button class="primary" id="to-stage-5">Continuer</button></div>
   </div>
 
-  <!-- STAGE 5: FINAL REPORT -->
+  <!-- STAGE 5: REPORT -->
   <div class="stage" id="stage-5">
     <h2>Étape 5 — Rédige ton rapport d'accusation complet</h2>
     <details class="ref-panel">
-      <summary>📎 Revoir le vocabulaire et les structures</summary>
+      <summary>Revoir le vocabulaire et les structures</summary>
       <div class="ref-block">
         <div class="ref-vocab" id="ref-vocab-5"></div>
         <ul class="ref-struct" id="ref-struct-5"></ul>
@@ -317,47 +357,42 @@
       </ol>
     </div>
     <textarea class="report-text" id="student-text" placeholder="Write your full accusation report here, in English..."></textarea>
-    <div class="actions"><button id="submit-btn">Soumettre pour correction</button></div>
+    <div class="actions"><button class="primary" id="submit-btn">Soumettre pour correction</button></div>
     <div id="status" class="status" style="display:none;"></div>
     <div id="feedback-box"></div>
   </div>
 
-  <div class="teacher-toggle">
-    Espace enseignant
-    <div><button class="ghost" id="teacher-btn">Ouvrir (code requis)</button></div>
-    <div id="teacher-panel" style="display:none;text-align:left;margin-top:16px;">
-      <div class="card">
-        <h3 style="margin:0 0 10px;">Élèves — 1ère MELEC</h3>
-        <div id="student-manage-list" style="margin-bottom:12px;"></div>
-        <div style="display:flex;gap:8px;">
-          <input type="text" id="new-student-name" placeholder="Prénom Nom" style="flex:1;padding:9px 12px;border-radius:10px;border:1.5px solid var(--card-dim);font-family:'Inter',sans-serif;">
-          <button class="small" id="add-student-btn">Ajouter</button>
-        </div>
-      </div>
-      <h3 style="margin:20px 0 10px;color:#fff;">Rapports reçus</h3>
-      <div id="teacher-reports"></div>
-    </div>
-  </div>
+</div>
+</div>
 
+<!-- TEACHER MODAL -->
+<div class="modal-backdrop" id="teacher-backdrop">
+  <div class="modal">
+    <button class="modal-close" id="teacher-close">×</button>
+    <h2>Espace enseignant</h2>
+    <div class="field-group" style="max-width:none;">
+      <label for="teacher-classe">Classe</label>
+      <select id="teacher-classe"></select>
+    </div>
+    <h3 style="margin:18px 0 8px;font-size:14px;">Élèves</h3>
+    <div id="student-manage-list" style="margin-bottom:10px;"></div>
+    <div style="display:flex;gap:8px;">
+      <input type="text" id="new-student-name" placeholder="Prénom Nom" style="flex:1;padding:9px 12px;border-radius:6px;border:1.5px solid var(--line);font-family:'Work Sans',sans-serif;">
+      <button class="primary small" id="add-student-btn">Ajouter</button>
+    </div>
+    <h3 style="margin:20px 0 8px;font-size:14px;">Rapports reçus</h3>
+    <div id="teacher-reports"></div>
+  </div>
 </div>
 
 <script>
 /* ---------- DATA ---------- */
 const VOCAB_FULL = [
-  ["clue","indice"],
-  ["fingerprint","empreinte"],
-  ["culprit","coupable"],
-  ["alibi","alibi"],
-  ["eyewitness","témoin oculaire"],
-  ["testimony","témoignage"],
-  ["to corroborate","corroborer"],
-  ["inconsistency","incohérence"],
-  ["red herring","fausse piste"],
-  ["student council","conseil des élèves"],
-  ["to incriminate","incriminer"],
-  ["beyond reasonable doubt","au-delà de tout doute raisonnable"],
+  ["clue","indice"], ["fingerprint","empreinte"], ["culprit","coupable"], ["alibi","alibi"],
+  ["eyewitness","témoin oculaire"], ["testimony","témoignage"], ["to corroborate","corroborer"],
+  ["inconsistency","incohérence"], ["red herring","fausse piste"], ["student council","conseil des élèves"],
+  ["to incriminate","incriminer"], ["beyond reasonable doubt","au-delà de tout doute raisonnable"],
 ];
-
 const STRUCTURES_FULL = [
   ["He was busy, it can't be him.", "Il était occupé, ça ne peut pas être lui."],
   ["She was seen near the gym.", "Elle a été vue près du gymnase."],
@@ -368,20 +403,13 @@ const STRUCTURES_FULL = [
   ["The evidence strongly suggests that...", "Les preuves suggèrent fortement que..."],
   ["This inconsistency raises the question of...", "Cette incohérence soulève la question de..."],
 ];
-
 const INTERRO_VOCAB = [
-  ["suspicious behaviour","comportement suspect"],
-  ["to have an alibi","avoir un alibi"],
-  ["confirmed / unconfirmed","confirmé / non confirmé"],
-  ["to vouch for someone","se porter garant de quelqu'un"],
-  ["evasive","évasif / évasive"],
-  ["reliable / unreliable","fiable / peu fiable"],
-  ["to contradict oneself","se contredire"],
-  ["plausible","plausible"],
-  ["to seem hesitant","sembler hésitant(e)"],
-  ["trustworthy","digne de confiance"],
+  ["suspicious behaviour","comportement suspect"], ["to have an alibi","avoir un alibi"],
+  ["confirmed / unconfirmed","confirmé / non confirmé"], ["to vouch for someone","se porter garant de quelqu'un"],
+  ["evasive","évasif / évasive"], ["reliable / unreliable","fiable / peu fiable"],
+  ["to contradict oneself","se contredire"], ["plausible","plausible"],
+  ["to seem hesitant","sembler hésitant(e)"], ["trustworthy","digne de confiance"],
 ];
-
 const SUSPECTS = [
   {name:"Ethan Miller", desc:"The football player, sometimes jealous of Jason."},
   {name:"Michael Brown", desc:"The smart student, Jason often laughed at him."},
@@ -389,6 +417,71 @@ const SUSPECTS = [
   {name:"Daniel Lee", desc:"The guitarist, Jason owed him money."},
   {name:"Emily Carter", desc:"Jason's best friend, she knows all his secrets."},
 ];
+
+/* ---------- SUPABASE CONFIG ---------- */
+var SUPABASE_URL = "https://eyfqryrwivjwwaftehdc.supabase.co";
+var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5ZnFyeXJ3aXZqd3dhZnRlaGRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczNDU2NjIsImV4cCI6MjEwMjkyMTY2Mn0.i9YiNL45rILlxyckLMl3SJVIIib8P40DSIaiNkm89tc";
+var GRADE_FUNCTION_URL = SUPABASE_URL + "/functions/v1/grade-advanced-module";
+var TEACHER_CODE = "melec2026"; // à changer si besoin, directement dans ce fichier
+var CLASS_ID = null;
+var STUDENT_NAME = null;
+
+function sbHeaders(){
+  return { "apikey": SUPABASE_ANON_KEY, "Authorization": "Bearer " + SUPABASE_ANON_KEY, "Content-Type": "application/json" };
+}
+
+/* ---------- LANDING: CLASSES + STUDENTS ---------- */
+async function loadClassesInto(selectEl, includePlaceholder){
+  selectEl.innerHTML = '<option value="">Chargement…</option>';
+  try{
+    var res = await fetch(SUPABASE_URL + "/rest/v1/classes?select=id,name&order=name", { headers: sbHeaders() });
+    var classes = await res.json();
+    selectEl.innerHTML = (includePlaceholder ? '<option value="">Choisis ta classe…</option>' : '') +
+      classes.map(function(c){ return '<option value="' + c.id + '">' + c.name + '</option>'; }).join('');
+  }catch(err){
+    selectEl.innerHTML = '<option value="">Erreur de chargement</option>'; console.error(err);
+  }
+}
+async function loadStudentsInto(selectEl, classId){
+  if(!classId){ selectEl.innerHTML = '<option value="">Choisis d\u2019abord ta classe</option>'; selectEl.disabled = true; return; }
+  selectEl.disabled = false;
+  selectEl.innerHTML = '<option value="">Chargement…</option>';
+  try{
+    var res = await fetch(SUPABASE_URL + "/rest/v1/students?class_id=eq." + classId + "&select=id,name&order=name", { headers: sbHeaders() });
+    var students = await res.json();
+    if(!students.length){ selectEl.innerHTML = '<option value="">Aucun élève configuré — demande à ton prof</option>'; return; }
+    selectEl.innerHTML = '<option value="">Choisis ton nom…</option>' +
+      students.map(function(s){ return '<option value="' + s.name.replace(/"/g,'') + '">' + s.name + '</option>'; }).join('');
+  }catch(err){
+    selectEl.innerHTML = '<option value="">Erreur de chargement</option>'; console.error(err);
+  }
+}
+
+var landingClasse = document.getElementById('landing-classe');
+var landingEleve = document.getElementById('landing-eleve');
+var btnStart = document.getElementById('btn-start');
+
+loadClassesInto(landingClasse, true);
+landingClasse.addEventListener('change', function(){
+  loadStudentsInto(landingEleve, landingClasse.value);
+  btnStart.disabled = true;
+});
+landingEleve.addEventListener('change', function(){
+  btnStart.disabled = !(landingClasse.value && landingEleve.value);
+});
+
+btnStart.addEventListener('click', function(){
+  CLASS_ID = landingClasse.value;
+  STUDENT_NAME = landingEleve.value;
+  document.getElementById('masthead-who').textContent = STUDENT_NAME;
+  document.getElementById('screen-landing').style.display = 'none';
+  document.getElementById('screen-app').style.display = 'block';
+  goToStage(1);
+});
+document.getElementById('switch-user-btn').addEventListener('click', function(){
+  document.getElementById('screen-app').style.display = 'none';
+  document.getElementById('screen-landing').style.display = 'flex';
+});
 
 /* ---------- STAGE NAV (free navigation) ---------- */
 let furthestVisited = 1;
@@ -407,7 +500,6 @@ function goToStage(n){
 document.querySelectorAll('.step-node').forEach(function(el){
   el.addEventListener('click', function(){ goToStage(parseInt(el.dataset.stage)); });
 });
-goToStage(1);
 ['to-stage-2','to-stage-3','to-stage-4','to-stage-5'].forEach(function(id, idx){
   document.getElementById(id).addEventListener('click', function(){ goToStage(idx+2); });
 });
@@ -417,14 +509,11 @@ function buildMatchGame(pairs, colEnId, colFrId, statusId){
   var colEn = document.getElementById(colEnId);
   var colFr = document.getElementById(colFrId);
   colEn.innerHTML = ''; colFr.innerHTML = '';
-
   var items = pairs.map(function(p, idx){ return {pairId: idx, en: p[0], fr: p[1]}; });
   var enOrder = items.slice().sort(function(){ return Math.random()-0.5; });
   var frOrder = items.slice().sort(function(){ return Math.random()-0.5; });
-
   var selectedEn = null, selectedFr = null, matchedCount = 0;
   document.getElementById(statusId).textContent = '0 / ' + pairs.length + ' paires trouvées';
-
   function tryMatch(){
     if(!selectedEn || !selectedFr) return;
     if(selectedEn.pairId === selectedFr.pairId){
@@ -436,16 +525,13 @@ function buildMatchGame(pairs, colEnId, colFrId, statusId){
     } else {
       selectedEn.el.classList.add('wrong'); selectedFr.el.classList.add('wrong');
       setTimeout(function(){
-        selectedEn.el.classList.remove('wrong','selected');
-        selectedFr.el.classList.remove('wrong','selected');
+        selectedEn.el.classList.remove('wrong','selected'); selectedFr.el.classList.remove('wrong','selected');
         selectedEn = null; selectedFr = null;
       }, 600);
     }
   }
-
   enOrder.forEach(function(it){
-    var el = document.createElement('div');
-    el.className = 'match-item'; el.textContent = it.en;
+    var el = document.createElement('div'); el.className = 'match-item'; el.textContent = it.en;
     el.addEventListener('click', function(){
       if(el.classList.contains('matched') || selectedEn) return;
       el.classList.add('selected'); selectedEn = {pairId: it.pairId, el: el}; tryMatch();
@@ -453,8 +539,7 @@ function buildMatchGame(pairs, colEnId, colFrId, statusId){
     colEn.appendChild(el);
   });
   frOrder.forEach(function(it){
-    var el = document.createElement('div');
-    el.className = 'match-item'; el.textContent = it.fr;
+    var el = document.createElement('div'); el.className = 'match-item'; el.textContent = it.fr;
     el.addEventListener('click', function(){
       if(el.classList.contains('matched') || selectedFr) return;
       el.classList.add('selected'); selectedFr = {pairId: it.pairId, el: el}; tryMatch();
@@ -462,47 +547,28 @@ function buildMatchGame(pairs, colEnId, colFrId, statusId){
     colFr.appendChild(el);
   });
 }
-function initVocab(){ buildMatchGame(VOCAB_FULL, 'vocab-col-en', 'vocab-col-fr', 'vocab-status'); }
-function initStruct(){ buildMatchGame(STRUCTURES_FULL, 'struct-col-en', 'struct-col-fr', 'struct-status'); }
-
-/* ---------- VISIBLE-CARDS MEMORY GRID (cards never hide) ---------- */
 function buildVisibleMemory(pairs, gridId, statusId){
-  var grid = document.getElementById(gridId);
-  grid.innerHTML = '';
+  var grid = document.getElementById(gridId); grid.innerHTML = '';
   var cards = [];
-  pairs.forEach(function(p, idx){
-    cards.push({pairId: idx, label: p[0]});
-    cards.push({pairId: idx, label: p[1]});
-  });
+  pairs.forEach(function(p, idx){ cards.push({pairId: idx, label: p[0]}); cards.push({pairId: idx, label: p[1]}); });
   cards.sort(function(){ return Math.random()-0.5; });
-
   var selected = null, matchedCount = 0, lock = false;
   document.getElementById(statusId).textContent = '0 / ' + pairs.length + ' paires trouvées';
-
   cards.forEach(function(c){
-    var el = document.createElement('div');
-    el.className = 'mem-card';
-    el.textContent = c.label;
+    var el = document.createElement('div'); el.className = 'mem-card'; el.textContent = c.label;
     el.addEventListener('click', function(){
       if(lock || el.classList.contains('matched') || el === (selected && selected.el)) return;
-      if(!selected){
-        el.classList.add('selected');
-        selected = {pairId: c.pairId, el: el};
-        return;
-      }
+      if(!selected){ el.classList.add('selected'); selected = {pairId: c.pairId, el: el}; return; }
       if(selected.pairId === c.pairId && selected.el !== el){
-        el.classList.add('matched'); selected.el.classList.add('matched');
-        selected.el.classList.remove('selected');
+        el.classList.add('matched'); selected.el.classList.add('matched'); selected.el.classList.remove('selected');
         matchedCount++;
         document.getElementById(statusId).textContent = matchedCount + ' / ' + pairs.length + ' paires trouvées';
         selected = null;
       } else {
-        lock = true;
-        el.classList.add('wrong'); selected.el.classList.add('wrong');
+        lock = true; el.classList.add('wrong'); selected.el.classList.add('wrong');
         var prevSelected = selected;
         setTimeout(function(){
-          el.classList.remove('wrong');
-          prevSelected.el.classList.remove('wrong','selected');
+          el.classList.remove('wrong'); prevSelected.el.classList.remove('wrong','selected');
           selected = null; lock = false;
         }, 600);
       }
@@ -510,6 +576,8 @@ function buildVisibleMemory(pairs, gridId, statusId){
     grid.appendChild(el);
   });
 }
+function initVocab(){ buildMatchGame(VOCAB_FULL, 'vocab-col-en', 'vocab-col-fr', 'vocab-status'); }
+function initStruct(){ buildMatchGame(STRUCTURES_FULL, 'struct-col-en', 'struct-col-fr', 'struct-status'); }
 function initVocabMemory(){ buildVisibleMemory(VOCAB_FULL, 'vocab-memory-grid', 'vocab-mem-status'); }
 function initInterroMemory(){ buildVisibleMemory(INTERRO_VOCAB, 'interro-memory-grid', 'interro-mem-status'); }
 function initInterroMatch(){ buildMatchGame(INTERRO_VOCAB, 'interro-col-en', 'interro-col-fr', 'interro-match-status'); }
@@ -521,28 +589,24 @@ document.getElementById('replay-struct').addEventListener('click', initStruct);
 document.getElementById('replay-interro-mem').addEventListener('click', initInterroMemory);
 document.getElementById('replay-interro-match').addEventListener('click', initInterroMatch);
 
-document.getElementById('tab-interro-mem').addEventListener('click', function(){
-  this.classList.add('active');
-  document.getElementById('tab-interro-match').classList.remove('active');
-  document.getElementById('activity-interro-mem').style.display = 'block';
-  document.getElementById('activity-interro-match').style.display = 'none';
-});
-document.getElementById('tab-interro-match').addEventListener('click', function(){
-  this.classList.add('active');
-  document.getElementById('tab-interro-mem').classList.remove('active');
-  document.getElementById('activity-interro-mem').style.display = 'none';
-  document.getElementById('activity-interro-match').style.display = 'block';
-});
-
-/* ---------- STAGE 1 TAB SWITCH ---------- */
-document.querySelectorAll('.tab-btn').forEach(function(btn){
+document.querySelectorAll('#stage-1 .tab-btn').forEach(function(btn){
   btn.addEventListener('click', function(){
-    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelectorAll('#stage-1 .tab-btn').forEach(function(b){ b.classList.remove('active'); });
     btn.classList.add('active');
     var activity = btn.dataset.activity;
     document.getElementById('activity-vocab-mem').style.display = activity === 'mem' ? 'block' : 'none';
     document.getElementById('activity-vocab-match').style.display = activity === 'match' ? 'block' : 'none';
   });
+});
+document.getElementById('tab-interro-mem').addEventListener('click', function(){
+  this.classList.add('active'); document.getElementById('tab-interro-match').classList.remove('active');
+  document.getElementById('activity-interro-mem').style.display = 'block';
+  document.getElementById('activity-interro-match').style.display = 'none';
+});
+document.getElementById('tab-interro-match').addEventListener('click', function(){
+  this.classList.add('active'); document.getElementById('tab-interro-mem').classList.remove('active');
+  document.getElementById('activity-interro-mem').style.display = 'none';
+  document.getElementById('activity-interro-match').style.display = 'block';
 });
 
 /* ---------- REFERENCE PANELS ---------- */
@@ -564,49 +628,16 @@ renderRefVocab('ref-vocab-4'); renderRefStruct('ref-struct-4');
 renderRefVocab('ref-vocab-5'); renderRefStruct('ref-struct-5');
 renderRefStruct('ref-struct-3');
 
-
-
 /* ---------- STAGE 3: SUSPECTS ---------- */
 var suspectsListEl = document.getElementById('suspects-list');
 SUSPECTS.forEach(function(s, idx){
-  var div = document.createElement('div');
-  div.className = 'suspect-card';
+  var div = document.createElement('div'); div.className = 'suspect-card';
   div.innerHTML = '<h4>' + s.name + '</h4><p>' + s.desc + '</p>' +
     '<textarea id="susp-' + idx + '" rows="2" placeholder="Write his/her alibi and how suspicious he/she seems, in English..."></textarea>';
   suspectsListEl.appendChild(div);
 });
 
-/* ---------- SUPABASE CONFIG ---------- */
-var SUPABASE_URL = "https://eyfqryrwivjwwaftehdc.supabase.co";
-var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5ZnFyeXJ3aXZqd3dhZnRlaGRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczNDU2NjIsImV4cCI6MjEwMjkyMTY2Mn0.i9YiNL45rILlxyckLMl3SJVIIib8P40DSIaiNkm89tc";
-var CLASS_ID = "513a4ec7-389d-432c-84ef-39cd72be6a9f"; // 1ère MELEC
-var GRADE_FUNCTION_URL = SUPABASE_URL + "/functions/v1/grade-advanced-module";
-var TEACHER_CODE = "melec2026"; // à changer si besoin, directement dans ce fichier
-
-function sbHeaders(){
-  return { "apikey": SUPABASE_ANON_KEY, "Authorization": "Bearer " + SUPABASE_ANON_KEY, "Content-Type": "application/json" };
-}
-
-/* ---------- LOAD STUDENT LIST ---------- */
-async function loadStudents(){
-  var sel = document.getElementById('student-select');
-  try{
-    var res = await fetch(SUPABASE_URL + "/rest/v1/students?class_id=eq." + CLASS_ID + "&select=id,name&order=name", { headers: sbHeaders() });
-    var students = await res.json();
-    if(!students.length){
-      sel.innerHTML = '<option value="">Aucun élève configuré — demande à ton prof</option>';
-      return;
-    }
-    sel.innerHTML = '<option value="">Choisis ton nom…</option>' +
-      students.map(function(s){ return '<option value="' + s.name.replace(/"/g,'') + '">' + s.name + '</option>'; }).join('');
-  }catch(err){
-    sel.innerHTML = '<option value="">Erreur de chargement</option>';
-    console.error(err);
-  }
-}
-loadStudents();
-
-/* ---------- AI GRADING (via secure Edge Function, no key exposed client-side) ---------- */
+/* ---------- AI GRADING (via secure Edge Function) ---------- */
 async function callGrading(systemPrompt, userContent){
   var response = await fetch(GRADE_FUNCTION_URL, {
     method: "POST", headers: sbHeaders(),
@@ -637,25 +668,19 @@ var VOCAB_LIST_STR = VOCAB_FULL.map(function(v){ return v[0]; }).join(", ");
 var STRUCT_LIST_STR = STRUCTURES_FULL.map(function(s){ return s[0]; }).join(" | ");
 var JSON_SHAPE = '{"vocab_score": 0-10, "structure_score": 0-10, "accuracy_score": 0-10, "feedback_for_student": "2-4 sentences in English, encouraging but specific", "summary_for_teacher": "1-2 sentences in French, factual, for a quick teacher report"}';
 
-/* ---------- STAGE 3 SUBMISSION: interrogations (language only, no fact-checking / no spoilers) ---------- */
 document.getElementById('submit-interro').addEventListener('click', async function(){
-  var name = document.getElementById('student-select').value;
+  var name = STUDENT_NAME;
   var status = document.getElementById('interro-status');
   var box = document.getElementById('interro-feedback');
   var btn = document.getElementById('submit-interro');
   var text = SUSPECTS.map(function(s, idx){
     return s.name + ": " + (document.getElementById('susp-'+idx).value.trim() || "(not filled in)");
   }).join("\n");
-
-  if(!name){ alert("Merci d'indiquer ton nom en haut de page avant de soumettre."); return; }
-
   btn.disabled = true; status.style.display = 'block'; status.textContent = 'Correction en cours…'; box.innerHTML = '';
-
-  var systemPrompt = "You are grading English notes taken during a suspect-interrogation phase of a class mystery game (Lincoln High School Mystery), for a French vocational student (1ere MELEC) doing an enrichment version.\n" +
+  var systemPrompt = "You are grading English notes taken during a suspect-interrogation phase of a class mystery game (Lincoln High School Mystery), for a French vocational student doing an enrichment version.\n" +
     "Target vocabulary: " + INTERRO_VOCAB.map(function(v){ return v[0]; }).join(", ") + ". Target structures (paraphrased forms count): " + STRUCT_LIST_STR + ".\n" +
-    "IMPORTANT: you do not know and must not guess or state who the real culprit is. Only evaluate English quality (grammar, vocabulary and structure reuse) and whether each note is a plausible, well-formed alibi/suspicion statement in English. Never comment on whether a suspect is actually guilty or innocent.\n" +
+    "IMPORTANT: you do not know and must not guess or state who the real culprit is. Only evaluate English quality and whether each note is a plausible, well-formed alibi/suspicion statement in English. Never comment on guilt or innocence.\n" +
     "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE;
-
   try{
     var result = await callGrading(systemPrompt, text);
     status.style.display = 'none'; box.innerHTML = renderFeedback(result);
@@ -665,11 +690,10 @@ document.getElementById('submit-interro').addEventListener('click', async functi
   }finally{ btn.disabled = false; }
 });
 
-/* ---------- STAGE 4: INVESTIGATION SHEET (fact-checked internally, never reveals solution) ---------- */
-var CASE_FACTS = "Real solution (for your grading only — NEVER reveal, confirm or hint at any of this to the student, whether their answer is right or wrong): the culprit is Sophia Williams, motivated by unrequited love and jealousy over the Homecoming election. The four genuine pieces of evidence, in any order, are: (1) a red nail polish fragment found on Jason's locker, matching Sophia Williams; (2) security camera footage from 1:55 PM showing Sophia Williams running through the hallway, not in her cheerleading uniform; (3) an anonymous note whose handwriting matches Sophia Williams; (4) a gap in Sophia Williams's schedule at 1:45 PM with no witness. The fifth item, Evidence #5, is always a guitar pick found near the lockers, belonging to Daniel Lee — this is a red herring, as his alibi (band rehearsal) is confirmed; a correct answer identifies it as a false lead and explains why it should be dismissed. If the student's answer for a slot is wrong or their reasoning for Evidence #5 is missing, lower accuracy_score and gently prompt them to re-examine that clue in feedback_for_student, without ever stating the correct name or the culprit.";
+var CASE_FACTS = "Real solution (for your grading only — NEVER reveal, confirm or hint at any of this to the student, whether their answer is right or wrong): the culprit is Sophia Williams, motivated by unrequited love and jealousy over the Homecoming election. The four genuine pieces of evidence, in any order, are: (1) a red nail polish fragment found on Jason's locker, matching Sophia Williams; (2) security camera footage from 1:55 PM showing Sophia Williams running through the hallway, not in her cheerleading uniform; (3) an anonymous note whose handwriting matches Sophia Williams; (4) a gap in Sophia Williams's schedule at 1:45 PM with no witness. Evidence #5 is always a guitar pick found near the lockers, belonging to Daniel Lee — a red herring, since his alibi (band rehearsal) is confirmed; a correct answer identifies it as a false lead and explains why it should be dismissed. If a slot is wrong or the Evidence #5 reasoning is missing, lower accuracy_score and gently prompt the student to re-examine that clue, without ever stating the correct name or the culprit.";
 
 document.getElementById('submit-sheet').addEventListener('click', async function(){
-  var name = document.getElementById('student-select').value;
+  var name = STUDENT_NAME;
   var fields = {
     "Suspect": document.getElementById('f-suspect').value.trim(),
     "Motive": document.getElementById('f-motive').value.trim(),
@@ -683,18 +707,13 @@ document.getElementById('submit-sheet').addEventListener('click', async function
   var status = document.getElementById('sheet-status');
   var box = document.getElementById('sheet-feedback');
   var btn = document.getElementById('submit-sheet');
-
-  if(!name){ alert("Choisis ton nom en haut de page avant de soumettre."); return; }
   var filled = Object.values(fields).filter(function(v){ return v.length > 0; });
   if(filled.length < 4){ alert("Remplis au moins la majorité des champs avant de soumettre."); return; }
-
   btn.disabled = true; status.style.display = 'block'; status.textContent = 'Correction en cours…'; box.innerHTML = '';
   var sheetText = Object.keys(fields).map(function(k){ return k + ": " + (fields[k] || "(not filled in)"); }).join("\n");
-
-  var systemPrompt = "You are grading an English investigation-sheet exercise for a French vocational student (1ere MELEC), part of an enrichment activity linked to the class 'Lincoln High School Mystery' game.\n" +
+  var systemPrompt = "You are grading an English investigation-sheet exercise for a French vocational student, part of an enrichment activity linked to the class 'Lincoln High School Mystery' game.\n" +
     "Target vocabulary: " + VOCAB_LIST_STR + ". Target structures (paraphrased forms count): " + STRUCT_LIST_STR + ".\n" + CASE_FACTS + "\n" +
     "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE;
-
   try{
     var result = await callGrading(systemPrompt, sheetText);
     status.style.display = 'none'; box.innerHTML = renderFeedback(result);
@@ -704,23 +723,17 @@ document.getElementById('submit-sheet').addEventListener('click', async function
   }finally{ btn.disabled = false; }
 });
 
-/* ---------- STAGE 5: FINAL REPORT ---------- */
 document.getElementById('submit-btn').addEventListener('click', async function(){
-  var name = document.getElementById('student-select').value;
+  var name = STUDENT_NAME;
   var text = document.getElementById('student-text').value.trim();
   var status = document.getElementById('status');
   var box = document.getElementById('feedback-box');
   var btn = document.getElementById('submit-btn');
-
-  if(!name){ alert("Choisis ton nom en haut de page avant de soumettre."); return; }
   if(text.split(/\s+/).length < 30){ alert("Ton rapport semble encore trop court — développe un peu plus."); return; }
-
   btn.disabled = true; status.style.display = 'block'; status.textContent = 'Correction en cours…'; box.innerHTML = '';
-
-  var systemPrompt = "You are grading an advanced English writing task (a full accusation report) for a French vocational student (1ere MELEC), part of an enrichment activity linked to the class 'Lincoln High School Mystery' game.\n" +
+  var systemPrompt = "You are grading an advanced English writing task (a full accusation report) for a French vocational student, part of an enrichment activity linked to the class 'Lincoln High School Mystery' game.\n" +
     "Target vocabulary: " + VOCAB_LIST_STR + ". Target structures (paraphrased forms count): " + STRUCT_LIST_STR + ".\n" + CASE_FACTS + "\n" +
     "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE;
-
   try{
     var result = await callGrading(systemPrompt, text);
     status.style.display = 'none'; box.innerHTML = renderFeedback(result);
@@ -730,31 +743,33 @@ document.getElementById('submit-btn').addEventListener('click', async function()
   }finally{ btn.disabled = false; }
 });
 
-/* ---------- TEACHER SPACE ---------- */
+/* ---------- TEACHER MODAL ---------- */
+var teacherClasse = document.getElementById('teacher-classe');
 async function renderStudentManageList(){
   var el = document.getElementById('student-manage-list');
+  if(!teacherClasse.value){ el.innerHTML = ''; return; }
   el.innerHTML = 'Chargement…';
-  var res = await fetch(SUPABASE_URL + "/rest/v1/students?class_id=eq." + CLASS_ID + "&select=id,name&order=name", { headers: sbHeaders() });
+  var res = await fetch(SUPABASE_URL + "/rest/v1/students?class_id=eq." + teacherClasse.value + "&select=id,name&order=name", { headers: sbHeaders() });
   var students = await res.json();
   if(!students.length){ el.innerHTML = '<div class="report-row">Aucun élève ajouté pour l\u2019instant.</div>'; return; }
   el.innerHTML = students.map(function(s){
     return '<div class="report-row" style="display:flex;justify-content:space-between;align-items:center;">' +
-      '<span>' + s.name + '</span>' +
-      '<button class="ghost small" data-delete-id="' + s.id + '">Supprimer</button></div>';
+      '<span>' + s.name + '</span><button class="ghost small" data-delete-id="' + s.id + '">Supprimer</button></div>';
   }).join('');
   el.querySelectorAll('[data-delete-id]').forEach(function(btn){
     btn.addEventListener('click', async function(){
       await fetch(SUPABASE_URL + "/rest/v1/students?id=eq." + btn.dataset.deleteId, { method: "DELETE", headers: sbHeaders() });
-      renderStudentManageList(); loadStudents();
+      renderStudentManageList();
+      if(landingClasse.value === teacherClasse.value) loadStudentsInto(landingEleve, landingClasse.value);
     });
   });
 }
-
 async function renderTeacherReports(){
   var box = document.getElementById('teacher-reports');
+  if(!teacherClasse.value){ box.innerHTML = ''; return; }
   box.innerHTML = 'Chargement…';
   try{
-    var res = await fetch(SUPABASE_URL + "/rest/v1/advanced_module_submissions?class_id=eq." + CLASS_ID + "&select=*&order=created_at.desc&limit=50", { headers: sbHeaders() });
+    var res = await fetch(SUPABASE_URL + "/rest/v1/advanced_module_submissions?class_id=eq." + teacherClasse.value + "&select=*&order=created_at.desc&limit=50", { headers: sbHeaders() });
     var rows = await res.json();
     if(!rows.length){ box.innerHTML = '<div class="report-row">Aucun rapport reçu pour l\u2019instant.</div>'; return; }
     box.innerHTML = rows.map(function(d){
@@ -765,27 +780,29 @@ async function renderTeacherReports(){
     box.innerHTML = '<div class="report-row">Erreur de chargement.</div>'; console.error(err);
   }
 }
+teacherClasse.addEventListener('change', function(){ renderStudentManageList(); renderTeacherReports(); });
 
 document.getElementById('teacher-btn').addEventListener('click', function(){
-  var panel = document.getElementById('teacher-panel');
-  if(panel.style.display === 'block'){ panel.style.display = 'none'; return; }
   var code = prompt("Code enseignant :");
   if(code !== TEACHER_CODE){ if(code !== null) alert("Code incorrect."); return; }
-  panel.style.display = 'block';
-  renderStudentManageList();
-  renderTeacherReports();
+  document.getElementById('teacher-backdrop').classList.add('visible');
+  loadClassesInto(teacherClasse, false);
+  setTimeout(function(){ if(teacherClasse.value){ renderStudentManageList(); renderTeacherReports(); } }, 400);
 });
-
+document.getElementById('teacher-close').addEventListener('click', function(){
+  document.getElementById('teacher-backdrop').classList.remove('visible');
+});
 document.getElementById('add-student-btn').addEventListener('click', async function(){
   var input = document.getElementById('new-student-name');
   var name = input.value.trim();
-  if(!name) return;
+  if(!name || !teacherClasse.value) return;
   await fetch(SUPABASE_URL + "/rest/v1/students", {
     method: "POST", headers: Object.assign(sbHeaders(), {"Prefer": "return=minimal"}),
-    body: JSON.stringify({ class_id: CLASS_ID, name: name })
+    body: JSON.stringify({ class_id: teacherClasse.value, name: name })
   });
   input.value = '';
-  renderStudentManageList(); loadStudents();
+  renderStudentManageList();
+  if(landingClasse.value === teacherClasse.value) loadStudentsInto(landingEleve, landingClasse.value);
 });
 
 if('serviceWorker' in navigator){
