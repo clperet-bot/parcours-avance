@@ -1,11 +1,11 @@
 {
-  "name": "Parcours d'enquêteur — Niveau avancé",
-  "short_name": "Enquête MELEC",
-  "description": "Parcours d'anglais avancé (vocabulaire, structures, interrogatoires, rapport) pour élèves de niveau supérieur.",
+  "name": "Parcours avancé",
+  "short_name": "Parcours avancé",
+  "description": "Parcours d'enrichissement (vocabulaire, structures, productions) pour élèves de niveau supérieur, en parallèle du cours.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#11151c",
-  "theme_color": "#11151c",
+  "background_color": "#EFEEE7",
+  "theme_color": "#EFEEE7",
   "orientation": "portrait-primary",
   "icons": [
     {
