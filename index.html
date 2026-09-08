@@ -25,7 +25,6 @@
   h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;}
   .wrap{max-width:720px;margin:0 auto;padding:28px 20px 90px;}
 
-  /* ---------- LANDING SCREEN ---------- */
   #screen-landing{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px 24px;text-align:center;}
   .landing-mark{width:56px;height:56px;border:2px solid var(--navy);border-radius:50%;
     display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;}
@@ -45,19 +44,15 @@
   .field-group select:focus{outline:none;border-bottom-color:var(--navy);}
   .field-group select:disabled{color:var(--muted);}
 
-  .btn-start{
-    margin-top:10px;background:var(--navy);color:#fff;border:none;
+  .btn-start{margin-top:10px;background:var(--navy);color:#fff;border:none;
     padding:14px 36px;font-size:15px;font-weight:600;border-radius:4px;cursor:pointer;
-    font-family:'Work Sans',sans-serif;letter-spacing:.01em;
-  }
+    font-family:'Work Sans',sans-serif;letter-spacing:.01em;}
   .btn-start:disabled{background:var(--line);color:var(--muted);cursor:default;}
 
   .teacher-link{margin-top:40px;font-size:12.5px;color:var(--muted);background:none;border:none;
     cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:'Work Sans',sans-serif;}
 
-  /* ---------- APP SCREEN ---------- */
   #screen-app{display:none;}
-
   .masthead{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:8px;padding-bottom:16px;border-bottom:1px solid var(--line);}
   .masthead .who{font-size:13px;color:var(--ink-soft);}
   .masthead .who b{color:var(--ink);}
@@ -119,13 +114,17 @@
   .ref-struct li{padding:7px 0;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--ink-soft);}
   .ref-struct li:last-child{border-bottom:none;}
   .ref-struct .fr{color:var(--muted);font-size:11.5px;}
+  .manual-block{font-size:12.5px;color:var(--ink-soft);}
+  .manual-block h4{font-size:13px;color:var(--navy-deep);margin:12px 0 4px;font-family:'Work Sans',sans-serif;font-weight:600;}
+  .manual-block ul{margin:0;padding-left:18px;}
+  .manual-block li{margin-bottom:3px;}
 
-  .suspect-card{background:var(--paper-dim);border-radius:8px;padding:13px 15px;margin-bottom:9px;}
-  .suspect-card h4{margin:0 0 4px;font-size:14px;color:var(--navy-deep);font-family:'Fraunces',serif;}
-  .suspect-card p{margin:0 0 9px;font-size:12px;color:var(--muted);}
-  .suspect-card textarea{width:100%;background:#fff;border:1.5px solid var(--line);border-radius:6px;
+  .item-card{background:var(--paper-dim);border-radius:8px;padding:13px 15px;margin-bottom:9px;}
+  .item-card h4{margin:0 0 4px;font-size:14px;color:var(--navy-deep);font-family:'Fraunces',serif;}
+  .item-card p{margin:0 0 9px;font-size:12px;color:var(--muted);}
+  .item-card textarea{width:100%;background:#fff;border:1.5px solid var(--line);border-radius:6px;
     padding:9px 11px;font-family:'Work Sans',sans-serif;font-size:13px;resize:vertical;}
-  .suspect-card textarea:focus{outline:none;border-color:var(--navy);}
+  .item-card textarea:focus{outline:none;border-color:var(--navy);}
 
   .sheet-field{margin-bottom:14px;}
   .sheet-field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
@@ -158,7 +157,6 @@
 
   .status{font-size:12.5px;color:var(--ochre);margin-top:8px;font-weight:500;}
 
-  /* ---------- TEACHER MODAL ---------- */
   .modal-backdrop{position:fixed;inset:0;background:rgba(20,40,52,.55);display:none;
     align-items:flex-start;justify-content:center;padding:40px 16px;z-index:50;overflow-y:auto;}
   .modal-backdrop.visible{display:flex;}
@@ -172,7 +170,6 @@
 </head>
 <body>
 
-<!-- LANDING SCREEN -->
 <div id="screen-landing">
   <div class="landing-mark">★</div>
   <div class="landing-eyebrow">Niveau avancé</div>
@@ -192,24 +189,23 @@
   <button class="teacher-link" id="teacher-btn">Espace enseignant</button>
 </div>
 
-<!-- APP SCREEN -->
 <div id="screen-app">
 <div class="wrap">
 
   <div class="masthead">
     <div>
-      <h1>Enquête — Lincoln High School</h1>
+      <h1 id="theme-title">—</h1>
       <div class="who">Niveau avancé — <b id="masthead-who">—</b></div>
     </div>
     <button class="switch-btn" id="switch-user-btn">Changer</button>
   </div>
 
   <div class="stepper" id="stepper">
-    <div class="step-node" data-stage="1"><div class="step-connector"></div><div class="step-circle">1</div><div class="step-label">Vocabulaire</div></div>
-    <div class="step-node" data-stage="2"><div class="step-connector"></div><div class="step-circle">2</div><div class="step-label">Structures</div></div>
-    <div class="step-node" data-stage="3"><div class="step-connector"></div><div class="step-circle">3</div><div class="step-label">Interrogatoires</div></div>
-    <div class="step-node" data-stage="4"><div class="step-connector"></div><div class="step-circle">4</div><div class="step-label">Fiche</div></div>
-    <div class="step-node" data-stage="5"><div class="step-connector"></div><div class="step-circle">5</div><div class="step-label">Rapport</div></div>
+    <div class="step-node" data-stage="1"><div class="step-connector"></div><div class="step-circle">1</div><div class="step-label" id="label-1">—</div></div>
+    <div class="step-node" data-stage="2"><div class="step-connector"></div><div class="step-circle">2</div><div class="step-label" id="label-2">—</div></div>
+    <div class="step-node" data-stage="3"><div class="step-connector"></div><div class="step-circle">3</div><div class="step-label" id="label-3">—</div></div>
+    <div class="step-node" data-stage="4"><div class="step-connector"></div><div class="step-circle">4</div><div class="step-label" id="label-4">—</div></div>
+    <div class="step-node" data-stage="5"><div class="step-connector"></div><div class="step-circle">5</div><div class="step-label" id="label-5">—</div></div>
   </div>
   <p class="lead" style="margin-bottom:22px;">Navigue librement entre les étapes, rejoue les activités autant que tu veux.</p>
 
@@ -217,12 +213,10 @@
   <div class="stage" id="stage-1">
     <h2>Étape 1 — Vocabulaire</h2>
     <p class="lead">Deux façons de t'entraîner, rejoue-les autant de fois que tu veux.</p>
-
     <div class="tabs">
       <button class="tab-btn active" data-activity="mem">Jeu de mémoire</button>
       <button class="tab-btn" data-activity="match">Association</button>
     </div>
-
     <div class="card" id="activity-vocab-mem">
       <div class="memory-grid" id="vocab-memory-grid"></div>
       <div class="mini-actions">
@@ -230,7 +224,6 @@
         <button class="ghost small" id="replay-vocab-mem">Rejouer</button>
       </div>
     </div>
-
     <div class="card" id="activity-vocab-match" style="display:none;">
       <div class="match-cols">
         <div class="match-col" id="vocab-col-en"></div>
@@ -241,14 +234,13 @@
         <button class="ghost small" id="replay-vocab">Rejouer</button>
       </div>
     </div>
-
     <div class="actions"><button class="primary" id="to-stage-2">Continuer</button></div>
   </div>
 
   <!-- STAGE 2: STRUCTURES -->
   <div class="stage" id="stage-2">
     <h2>Étape 2 — Structures</h2>
-    <p class="lead">Même principe : associe chaque phrase à sa traduction.</p>
+    <p class="lead">Associe chaque phrase à sa traduction.</p>
     <div class="card">
       <div class="match-cols">
         <div class="match-col" id="struct-col-en"></div>
@@ -262,54 +254,52 @@
     <div class="actions"><button class="primary" id="to-stage-3">Continuer</button></div>
   </div>
 
-  <!-- STAGE 3: INTERROGATIONS -->
+  <!-- STAGE 3: PRACTICE (interrogations / diagnostic) -->
   <div class="stage" id="stage-3">
-    <h2>Étape 3 — Interrogatoires des suspects</h2>
-    <p class="lead">Entraîne-toi d'abord sur le vocabulaire, puis note en anglais ce que tu découvres sur chaque suspect.</p>
+    <h2 id="stage3-heading">Étape 3</h2>
+    <p class="lead" id="stage3-lead"></p>
 
     <div class="tabs">
-      <button class="tab-btn active" id="tab-interro-mem">Jeu de mémoire</button>
-      <button class="tab-btn" id="tab-interro-match">Association</button>
+      <button class="tab-btn active" id="tab-s3-mem">Jeu de mémoire</button>
+      <button class="tab-btn" id="tab-s3-match">Association</button>
     </div>
-
-    <div class="card" id="activity-interro-mem">
-      <div class="memory-grid" id="interro-memory-grid"></div>
+    <div class="card" id="activity-s3-mem">
+      <div class="memory-grid" id="s3-memory-grid"></div>
       <div class="mini-actions">
-        <div class="mem-status" id="interro-mem-status">0 / 0 paires trouvées</div>
-        <button class="ghost small" id="replay-interro-mem">Rejouer</button>
+        <div class="mem-status" id="s3-mem-status">0 / 0 paires trouvées</div>
+        <button class="ghost small" id="replay-s3-mem">Rejouer</button>
       </div>
     </div>
-
-    <div class="card" id="activity-interro-match" style="display:none;">
+    <div class="card" id="activity-s3-match" style="display:none;">
       <div class="match-cols">
-        <div class="match-col" id="interro-col-en"></div>
-        <div class="match-col" id="interro-col-fr"></div>
+        <div class="match-col" id="s3-col-en"></div>
+        <div class="match-col" id="s3-col-fr"></div>
       </div>
       <div class="mini-actions">
-        <div class="mem-status" id="interro-match-status">0 / 0 paires trouvées</div>
-        <button class="ghost small" id="replay-interro-match">Rejouer</button>
+        <div class="mem-status" id="s3-match-status">0 / 0 paires trouvées</div>
+        <button class="ghost small" id="replay-s3-match">Rejouer</button>
       </div>
     </div>
 
-    <details class="ref-panel">
-      <summary>Structures à réutiliser</summary>
-      <div class="ref-block"><ul class="ref-struct" id="ref-struct-3"></ul></div>
+    <details class="ref-panel" id="stage3-ref-panel">
+      <summary id="stage3-ref-summary">Référence</summary>
+      <div class="ref-block" id="stage3-ref-content"></div>
     </details>
 
-    <p class="lead" style="margin-top:6px;"><strong style="color:var(--ink);">Consigne :</strong> note en anglais ce que tu découvres sur chaque suspect (où il/elle était, avec qui, si son alibi tient).</p>
+    <p class="lead" style="margin-top:6px;" id="stage3-instruction"></p>
 
-    <div id="suspects-list"></div>
+    <div id="stage3-items"></div>
 
-    <div class="actions"><button class="primary" id="submit-interro">Faire corriger</button></div>
-    <div id="interro-status" class="status" style="display:none;"></div>
-    <div id="interro-feedback"></div>
+    <div class="actions"><button class="primary" id="submit-stage3">Faire corriger</button></div>
+    <div id="stage3-status" class="status" style="display:none;"></div>
+    <div id="stage3-feedback"></div>
 
     <div class="actions"><button class="primary" id="to-stage-4">Continuer</button></div>
   </div>
 
   <!-- STAGE 4: SHEET -->
   <div class="stage" id="stage-4">
-    <h2>Étape 4 — Fiche d'investigation</h2>
+    <h2 id="stage4-heading">Étape 4</h2>
     <p class="lead">Réutilise le vocabulaire et les structures pour compléter chaque partie, en anglais.</p>
 
     <details class="ref-panel">
@@ -321,14 +311,7 @@
     </details>
 
     <div class="card">
-      <div class="sheet-field"><label>Suspect</label><input type="text" id="f-suspect"></div>
-      <div class="sheet-field"><label>Motive</label><textarea id="f-motive" rows="2"></textarea></div>
-      <div class="sheet-field"><label>Evidence #1</label><textarea id="f-evidence1" rows="2"></textarea></div>
-      <div class="sheet-field"><label>Evidence #2</label><textarea id="f-evidence2" rows="2"></textarea></div>
-      <div class="sheet-field"><label>Evidence #3</label><textarea id="f-evidence3" rows="2"></textarea></div>
-      <div class="sheet-field"><label>Evidence #4</label><textarea id="f-evidence4" rows="2"></textarea></div>
-      <div class="sheet-field"><label>Evidence #5</label><textarea id="f-evidence5" rows="2"></textarea></div>
-      <div class="sheet-field"><label>Final statement</label><textarea id="f-conclusion" rows="2"></textarea></div>
+      <div id="stage4-fields"></div>
       <div class="actions"><button class="primary" id="submit-sheet">Faire corriger</button></div>
       <div id="sheet-status" class="status" style="display:none;"></div>
       <div id="sheet-feedback"></div>
@@ -337,9 +320,9 @@
     <div class="actions"><button class="primary" id="to-stage-5">Continuer</button></div>
   </div>
 
-  <!-- STAGE 5: REPORT -->
+  <!-- STAGE 5: FINAL -->
   <div class="stage" id="stage-5">
-    <h2>Étape 5 — Rédige ton rapport d'accusation complet</h2>
+    <h2 id="stage5-heading">Étape 5</h2>
     <details class="ref-panel">
       <summary>Revoir le vocabulaire et les structures</summary>
       <div class="ref-block">
@@ -347,16 +330,8 @@
         <ul class="ref-struct" id="ref-struct-5"></ul>
       </div>
     </details>
-    <div class="task-steps">
-      <p>En t'appuyant sur ta fiche d'investigation, rédige un rapport complet et fluide, en anglais :</p>
-      <ol>
-        <li>Désigne le ou la suspect(e) et énonce ton hypothèse principale (le mobile).</li>
-        <li>Explique en quoi chaque indice soutient — ou non — ton accusation.</li>
-        <li>Si un indice s'avère trompeur, explique pourquoi tu l'écartes.</li>
-        <li>Conclus par une déclaration de culpabilité formelle.</li>
-      </ol>
-    </div>
-    <textarea class="report-text" id="student-text" placeholder="Write your full accusation report here, in English..."></textarea>
+    <div class="task-steps" id="stage5-instructions"></div>
+    <textarea class="report-text" id="student-text" placeholder="Write your full text here, in English..."></textarea>
     <div class="actions"><button class="primary" id="submit-btn">Soumettre pour correction</button></div>
     <div id="status" class="status" style="display:none;"></div>
     <div id="feedback-box"></div>
@@ -365,7 +340,6 @@
 </div>
 </div>
 
-<!-- TEACHER MODAL -->
 <div class="modal-backdrop" id="teacher-backdrop">
   <div class="modal">
     <button class="modal-close" id="teacher-close">×</button>
@@ -373,6 +347,13 @@
     <div class="field-group" style="max-width:none;">
       <label for="teacher-classe">Classe</label>
       <select id="teacher-classe"></select>
+    </div>
+    <div class="field-group" style="max-width:none;">
+      <label for="teacher-theme">Thème actif pour cette classe</label>
+      <select id="teacher-theme">
+        <option value="cluedo">Enquête — Lincoln High School</option>
+        <option value="atwork">Atelier électricien — Maintenance</option>
+      </select>
     </div>
     <h3 style="margin:18px 0 8px;font-size:14px;">Élèves</h3>
     <div id="student-manage-list" style="margin-bottom:10px;"></div>
@@ -386,51 +367,201 @@
 </div>
 
 <script>
-/* ---------- DATA ---------- */
-const VOCAB_FULL = [
-  ["clue","indice"], ["fingerprint","empreinte"], ["culprit","coupable"], ["alibi","alibi"],
-  ["eyewitness","témoin oculaire"], ["testimony","témoignage"], ["to corroborate","corroborer"],
-  ["inconsistency","incohérence"], ["red herring","fausse piste"], ["student council","conseil des élèves"],
-  ["to incriminate","incriminer"], ["beyond reasonable doubt","au-delà de tout doute raisonnable"],
-];
-const STRUCTURES_FULL = [
-  ["He was busy, it can't be him.", "Il était occupé, ça ne peut pas être lui."],
-  ["She was seen near the gym.", "Elle a été vue près du gymnase."],
-  ["The fingerprint matches hers.", "L'empreinte lui correspond."],
-  ["It's probably her, she is the culprit.", "C'est sûrement elle, c'est la coupable."],
-  ["The note is written in her style.", "Le message est écrit dans son style."],
-  ["Other suspects have alibis.", "Les autres suspects ont des alibis."],
-  ["The evidence strongly suggests that...", "Les preuves suggèrent fortement que..."],
-  ["This inconsistency raises the question of...", "Cette incohérence soulève la question de..."],
-];
-const INTERRO_VOCAB = [
-  ["suspicious behaviour","comportement suspect"], ["to have an alibi","avoir un alibi"],
-  ["confirmed / unconfirmed","confirmé / non confirmé"], ["to vouch for someone","se porter garant de quelqu'un"],
-  ["evasive","évasif / évasive"], ["reliable / unreliable","fiable / peu fiable"],
-  ["to contradict oneself","se contredire"], ["plausible","plausible"],
-  ["to seem hesitant","sembler hésitant(e)"], ["trustworthy","digne de confiance"],
-];
-const SUSPECTS = [
-  {name:"Ethan Miller", desc:"The football player, sometimes jealous of Jason."},
-  {name:"Michael Brown", desc:"The smart student, Jason often laughed at him."},
-  {name:"Sophia Williams", desc:"The cheerleader, she liked Jason but he didn't like her back."},
-  {name:"Daniel Lee", desc:"The guitarist, Jason owed him money."},
-  {name:"Emily Carter", desc:"Jason's best friend, she knows all his secrets."},
-];
+/* ================= THEME DATA ================= */
+var THEMES = {};
 
-/* ---------- SUPABASE CONFIG ---------- */
+THEMES.cluedo = {
+  slug: 'cluedo',
+  title: 'Enquête — Lincoln High School',
+  stageLabels: ['Vocabulaire','Structures','Interrogatoires','Fiche','Rapport'],
+  vocab: [
+    ["clue","indice"], ["fingerprint","empreinte"], ["culprit","coupable"], ["alibi","alibi"],
+    ["eyewitness","témoin oculaire"], ["testimony","témoignage"], ["to corroborate","corroborer"],
+    ["inconsistency","incohérence"], ["red herring","fausse piste"], ["student council","conseil des élèves"],
+    ["to incriminate","incriminer"], ["beyond reasonable doubt","au-delà de tout doute raisonnable"],
+  ],
+  structures: [
+    ["He was busy, it can't be him.", "Il était occupé, ça ne peut pas être lui."],
+    ["She was seen near the gym.", "Elle a été vue près du gymnase."],
+    ["The fingerprint matches hers.", "L'empreinte lui correspond."],
+    ["It's probably her, she is the culprit.", "C'est sûrement elle, c'est la coupable."],
+    ["The note is written in her style.", "Le message est écrit dans son style."],
+    ["Other suspects have alibis.", "Les autres suspects ont des alibis."],
+    ["The evidence strongly suggests that...", "Les preuves suggèrent fortement que..."],
+    ["This inconsistency raises the question of...", "Cette incohérence soulève la question de..."],
+  ],
+  stage3: {
+    heading: 'Étape 3 — Interrogatoires des suspects',
+    lead: "Entraîne-toi d'abord sur le vocabulaire, puis note en anglais ce que tu découvres sur chaque suspect.",
+    vocab: [
+      ["suspicious behaviour","comportement suspect"], ["to have an alibi","avoir un alibi"],
+      ["confirmed / unconfirmed","confirmé / non confirmé"], ["to vouch for someone","se porter garant de quelqu'un"],
+      ["evasive","évasif / évasive"], ["reliable / unreliable","fiable / peu fiable"],
+      ["to contradict oneself","se contredire"], ["plausible","plausible"],
+      ["to seem hesitant","sembler hésitant(e)"], ["trustworthy","digne de confiance"],
+    ],
+    reference: { type: 'structures', summary: 'Structures à réutiliser' },
+    items: [
+      {title:"Ethan Miller", sub:"The football player, sometimes jealous of Jason."},
+      {title:"Michael Brown", sub:"The smart student, Jason often laughed at him."},
+      {title:"Sophia Williams", sub:"The cheerleader, she liked Jason but he didn't like her back."},
+      {title:"Daniel Lee", sub:"The guitarist, Jason owed him money."},
+      {title:"Emily Carter", sub:"Jason's best friend, she knows all his secrets."},
+    ],
+    itemPlaceholder: "Write his/her alibi and how suspicious he/she seems, in English...",
+    instruction: "note en anglais ce que tu découvres sur chaque suspect (où il/elle était, avec qui, si son alibi tient).",
+    buildSystemPrompt: function(text, theme){
+      return "You are grading English notes taken during a suspect-interrogation phase of a class mystery game (Lincoln High School Mystery), for a French vocational student doing an enrichment version.\n" +
+        "Target vocabulary: " + theme.stage3.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" +
+        "IMPORTANT: you do not know and must not guess or state who the real culprit is. Only evaluate English quality and whether each note is a plausible, well-formed alibi/suspicion statement in English. Never comment on guilt or innocence.\n" +
+        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+    }
+  },
+  stage4: {
+    heading: "Étape 4 — Fiche d'investigation",
+    fields: [
+      {id:'suspect', label:'Suspect', type:'input'},
+      {id:'motive', label:'Motive', type:'textarea'},
+      {id:'evidence1', label:'Evidence #1', type:'textarea'},
+      {id:'evidence2', label:'Evidence #2', type:'textarea'},
+      {id:'evidence3', label:'Evidence #3', type:'textarea'},
+      {id:'evidence4', label:'Evidence #4', type:'textarea'},
+      {id:'evidence5', label:'Evidence #5', type:'textarea'},
+      {id:'conclusion', label:'Final statement', type:'textarea'},
+    ],
+    buildSystemPrompt: function(sheetText, theme){
+      var CASE_FACTS = "Real solution (for your grading only — NEVER reveal, confirm or hint at any of this to the student, whether their answer is right or wrong): the culprit is Sophia Williams, motivated by unrequited love and jealousy over the Homecoming election. The four genuine pieces of evidence, in any order, are: (1) a red nail polish fragment found on Jason's locker, matching Sophia Williams; (2) security camera footage from 1:55 PM showing Sophia Williams running through the hallway, not in her cheerleading uniform; (3) an anonymous note whose handwriting matches Sophia Williams; (4) a gap in Sophia Williams's schedule at 1:45 PM with no witness. Evidence #5 is always a guitar pick found near the lockers, belonging to Daniel Lee — a red herring, since his alibi (band rehearsal) is confirmed; a correct answer identifies it as a false lead and explains why it should be dismissed. If a slot is wrong or the Evidence #5 reasoning is missing, lower accuracy_score and gently prompt the student to re-examine that clue, without ever stating the correct name or the culprit.";
+      return "You are grading an English investigation-sheet exercise for a French vocational student, part of an enrichment activity linked to the class 'Lincoln High School Mystery' game.\n" +
+        "Target vocabulary: " + theme.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" + CASE_FACTS + "\n" +
+        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+    }
+  },
+  stage5: {
+    heading: "Étape 5 — Rédige ton rapport d'accusation complet",
+    instructions: [
+      "Désigne le ou la suspect(e) et énonce ton hypothèse principale (le mobile).",
+      "Explique en quoi chaque indice soutient — ou non — ton accusation.",
+      "Si un indice s'avère trompeur, explique pourquoi tu l'écartes.",
+      "Conclus par une déclaration de culpabilité formelle."
+    ],
+    instructionsLead: "En t'appuyant sur ta fiche d'investigation, rédige un rapport complet et fluide, en anglais :",
+    buildSystemPrompt: function(text, theme){
+      var CASE_FACTS = "Real solution (for your grading only — NEVER reveal, confirm or hint at any of this to the student): the culprit is Sophia Williams, motivated by unrequited love and jealousy over the Homecoming election. The four genuine pieces of evidence are the nail polish fragment, the security footage, the anonymous note, and the schedule gap, all pointing to Sophia Williams. The guitar pick (belonging to Daniel Lee) is a red herring — his alibi is confirmed.";
+      return "You are grading an advanced English writing task (a full accusation report) for a French vocational student, part of an enrichment activity linked to the class 'Lincoln High School Mystery' game.\n" +
+        "Target vocabulary: " + theme.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" + CASE_FACTS + "\n" +
+        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+    }
+  }
+};
+
+THEMES.atwork = {
+  slug: 'atwork',
+  title: 'Atelier électricien — Maintenance',
+  stageLabels: ['Vocabulaire','Structures','Diagnostic','Fiche','Explication'],
+  vocab: [
+    ["contactor","contacteur"], ["wires","fils"], ["fuse","fusible"], ["cover","capot"],
+    ["tighten","serrer"], ["loosen","desserrer"], ["replace","remplacer"], ["monitor","surveiller"],
+    ["indicator light","voyant"], ["overheating","surchauffe"],
+    ["to isolate the power supply","couper l'alimentation"], ["faulty","défectueux"],
+  ],
+  structures: [
+    ["I am checking the wires.", "Je suis en train de vérifier les fils."],
+    ["First, I am switching off the power.", "D'abord, j'éteins l'alimentation."],
+    ["Then, I am opening the cover.", "Ensuite, j'ouvre le capot."],
+    ["Having checked the wiring, I proceeded to tighten it.", "Après avoir vérifié le câblage, j'ai continué en le serrant."],
+    ["Before switching off the power, make sure the machine is not in use.", "Avant de couper l'alimentation, assure-toi que la machine n'est pas utilisée."],
+    ["It is essential to test the circuit before closing the cover.", "Il est essentiel de tester le circuit avant de refermer le capot."],
+    ["Once the contactor has been inspected, I can restart the machine.", "Une fois le contacteur inspecté, je peux redémarrer la machine."],
+    ["Finally, I am monitoring the machine while it is working.", "Enfin, je surveille la machine pendant qu'elle fonctionne."],
+  ],
+  stage3: {
+    heading: 'Étape 3 — Diagnostic de panne',
+    lead: "Entraîne-toi d'abord sur le vocabulaire, puis explique en anglais ce que tu vérifierais pour chaque panne.",
+    vocab: [
+      ["faulty wiring","câblage défectueux"], ["to rule out","écarter (une hypothèse)"],
+      ["to short-circuit","court-circuiter"], ["wear and tear","usure"],
+      ["to troubleshoot","dépanner"], ["loose connection","connexion desserrée"],
+      ["to inspect thoroughly","inspecter minutieusement"], ["protective equipment","équipement de protection"],
+      ["to pose a risk","présenter un risque"], ["reliable","fiable"],
+    ],
+    reference: {
+      type: 'manual', summary: "Manuel d'utilisation — Air Compressor",
+      data: {
+        "Safety instructions": ["Always wear gloves and safety glasses.","Check that the power is OFF before touching any part.","Use the correct tools for each task.","Do not touch electrical parts with wet hands."],
+        "Operating steps": ["Check the power supply and main switch.","Open the machine cover with a screwdriver.","Check the contactor and all terminals.","Clean the inside with a dry cloth if needed.","Close the cover and test the machine."],
+        "Troubleshooting": ["Problem: The air compressor does not start.","Possible cause: Loose wire or damaged contactor.","Turn off the power.","Open the cover with a screwdriver.","Check the contactor coil and tighten the wires.","Replace damaged parts if necessary.","Turn the power on and test again."]
+      }
+    },
+    items: [
+      {title:"The air compressor doesn't start."}, {title:"The inside is dirty."},
+      {title:"The wires are loose."}, {title:"The contactor coil is damaged."},
+      {title:"You touched the wires with wet hands."}, {title:"The power is off."},
+    ],
+    itemPlaceholder: "What would you check, and why? In English...",
+    instruction: "pour chaque panne, explique en anglais ce que tu vérifierais et pourquoi.",
+    buildSystemPrompt: function(text, theme){
+      var manual = theme.stage3.reference.data;
+      var manualStr = Object.keys(manual).map(function(k){ return k + ": " + manual[k].join(" / "); }).join("\n");
+      return "You are grading English troubleshooting notes written by a French vocational student (electrician track), for an enrichment activity based on this air compressor user manual:\n" + manualStr + "\n" +
+        "Target vocabulary: " + theme.stage3.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" +
+        "For each problem, judge whether the student's proposed check is plausible and consistent with the manual, and evaluate English quality and vocabulary/structure reuse.\n" +
+        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+    }
+  },
+  stage4: {
+    heading: "Étape 4 — Fiche d'intervention",
+    fields: [
+      {id:'equipment', label:'Equipment', type:'input'},
+      {id:'problem', label:'Problem observed', type:'textarea'},
+      {id:'safety', label:'Safety checks performed', type:'textarea'},
+      {id:'steps', label:'Diagnostic steps', type:'textarea'},
+      {id:'action', label:'Action taken', type:'textarea'},
+      {id:'result', label:'Result / test', type:'textarea'},
+    ],
+    buildSystemPrompt: function(sheetText, theme){
+      var manual = theme.stage3.reference.data;
+      var manualStr = Object.keys(manual).map(function(k){ return k + ": " + manual[k].join(" / "); }).join("\n");
+      return "You are grading an English maintenance-report exercise written by a French vocational student (electrician track), for an enrichment activity based on this air compressor user manual:\n" + manualStr + "\n" +
+        "Target vocabulary: " + theme.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" +
+        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+    }
+  },
+  stage5: {
+    heading: "Étape 5 — Explique l'intervention à un stagiaire",
+    instructions: [
+      "Présente le problème rencontré et la première vérification de sécurité.",
+      "Utilise first / then / next / finally pour organiser les étapes.",
+      "Utilise be + V-ing pour décrire ce que tu es en train de faire.",
+      "Termine en expliquant comment tu vérifies que tout fonctionne."
+    ],
+    instructionsLead: "Un stagiaire t'observe. Explique-lui en anglais toute l'intervention (diagnostic + réparation) :",
+    buildSystemPrompt: function(text, theme){
+      var manual = theme.stage3.reference.data;
+      var manualStr = Object.keys(manual).map(function(k){ return k + ": " + manual[k].join(" / "); }).join("\n");
+      return "You are grading an advanced English writing task (a full explanation to a trainee) written by a French vocational student (electrician track), for an enrichment activity based on this air compressor user manual:\n" + manualStr + "\n" +
+        "Target vocabulary: " + theme.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count, including first/then/next/finally and be+V-ing): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" +
+        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+    }
+  }
+};
+
+var JSON_SHAPE_STR = '{"vocab_score": 0-10, "structure_score": 0-10, "accuracy_score": 0-10, "feedback_for_student": "2-4 sentences in English, encouraging but specific", "summary_for_teacher": "1-2 sentences in French, factual, for a quick teacher report"}';
+
+/* ================= SUPABASE CONFIG ================= */
 var SUPABASE_URL = "https://eyfqryrwivjwwaftehdc.supabase.co";
 var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5ZnFyeXJ3aXZqd3dhZnRlaGRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczNDU2NjIsImV4cCI6MjEwMjkyMTY2Mn0.i9YiNL45rILlxyckLMl3SJVIIib8P40DSIaiNkm89tc";
 var GRADE_FUNCTION_URL = SUPABASE_URL + "/functions/v1/grade-advanced-module";
-var TEACHER_CODE = "GDB2026"; // à changer si besoin, directement dans ce fichier
+var TEACHER_CODE = "GDB2026";
 var CLASS_ID = null;
 var STUDENT_NAME = null;
+var ACTIVE_THEME_SLUG = 'cluedo';
+var THEME = null;
 
 function sbHeaders(){
   return { "apikey": SUPABASE_ANON_KEY, "Authorization": "Bearer " + SUPABASE_ANON_KEY, "Content-Type": "application/json" };
 }
 
-/* ---------- LANDING: CLASSES + STUDENTS ---------- */
+/* ================= LANDING ================= */
 async function loadClassesInto(selectEl, includePlaceholder){
   selectEl.innerHTML = '<option value="">Chargement…</option>';
   try{
@@ -438,9 +569,7 @@ async function loadClassesInto(selectEl, includePlaceholder){
     var classes = await res.json();
     selectEl.innerHTML = (includePlaceholder ? '<option value="">Choisis ta classe…</option>' : '') +
       classes.map(function(c){ return '<option value="' + c.id + '">' + c.name + '</option>'; }).join('');
-  }catch(err){
-    selectEl.innerHTML = '<option value="">Erreur de chargement</option>'; console.error(err);
-  }
+  }catch(err){ selectEl.innerHTML = '<option value="">Erreur de chargement</option>'; console.error(err); }
 }
 async function loadStudentsInto(selectEl, classId){
   if(!classId){ selectEl.innerHTML = '<option value="">Choisis d\u2019abord ta classe</option>'; selectEl.disabled = true; return; }
@@ -452,27 +581,29 @@ async function loadStudentsInto(selectEl, classId){
     if(!students.length){ selectEl.innerHTML = '<option value="">Aucun élève configuré — demande à ton prof</option>'; return; }
     selectEl.innerHTML = '<option value="">Choisis ton nom…</option>' +
       students.map(function(s){ return '<option value="' + s.name.replace(/"/g,'') + '">' + s.name + '</option>'; }).join('');
-  }catch(err){
-    selectEl.innerHTML = '<option value="">Erreur de chargement</option>'; console.error(err);
-  }
+  }catch(err){ selectEl.innerHTML = '<option value="">Erreur de chargement</option>'; console.error(err); }
+}
+async function fetchActiveTheme(classId){
+  if(!classId) return 'cluedo';
+  try{
+    var res = await fetch(SUPABASE_URL + "/rest/v1/class_theme_activation?class_id=eq." + classId + "&select=theme", { headers: sbHeaders() });
+    var rows = await res.json();
+    return (rows[0] && rows[0].theme) || 'cluedo';
+  }catch(err){ console.error(err); return 'cluedo'; }
 }
 
 var landingClasse = document.getElementById('landing-classe');
 var landingEleve = document.getElementById('landing-eleve');
 var btnStart = document.getElementById('btn-start');
-
 loadClassesInto(landingClasse, true);
-landingClasse.addEventListener('change', function(){
-  loadStudentsInto(landingEleve, landingClasse.value);
-  btnStart.disabled = true;
-});
-landingEleve.addEventListener('change', function(){
-  btnStart.disabled = !(landingClasse.value && landingEleve.value);
-});
+landingClasse.addEventListener('change', function(){ loadStudentsInto(landingEleve, landingClasse.value); btnStart.disabled = true; });
+landingEleve.addEventListener('change', function(){ btnStart.disabled = !(landingClasse.value && landingEleve.value); });
 
-btnStart.addEventListener('click', function(){
-  CLASS_ID = landingClasse.value;
-  STUDENT_NAME = landingEleve.value;
+btnStart.addEventListener('click', async function(){
+  CLASS_ID = landingClasse.value; STUDENT_NAME = landingEleve.value;
+  ACTIVE_THEME_SLUG = await fetchActiveTheme(CLASS_ID);
+  THEME = THEMES[ACTIVE_THEME_SLUG] || THEMES.cluedo;
+  renderTheme();
   document.getElementById('masthead-who').textContent = STUDENT_NAME;
   document.getElementById('screen-landing').style.display = 'none';
   document.getElementById('screen-app').style.display = 'block';
@@ -483,7 +614,84 @@ document.getElementById('switch-user-btn').addEventListener('click', function(){
   document.getElementById('screen-landing').style.display = 'flex';
 });
 
-/* ---------- STAGE NAV (free navigation) ---------- */
+/* ================= RENDER THEME INTO GENERIC SHELL ================= */
+function renderTheme(){
+  document.getElementById('theme-title').textContent = THEME.title;
+  THEME.stageLabels.forEach(function(label, idx){ document.getElementById('label-'+(idx+1)).textContent = label; });
+
+  initVocab(); initStruct(); initVocabMemory();
+
+  // Stage 3
+  document.getElementById('stage3-heading').textContent = THEME.stage3.heading;
+  document.getElementById('stage3-lead').textContent = THEME.stage3.lead;
+  document.getElementById('stage3-instruction').innerHTML = '<strong style="color:var(--ink);">Consigne :</strong> ' + THEME.stage3.instruction;
+  initS3Memory(); initS3Match();
+
+  var refPanel = document.getElementById('stage3-ref-content');
+  refPanel.innerHTML = '';
+  document.getElementById('stage3-ref-summary').textContent = THEME.stage3.reference.summary;
+  if(THEME.stage3.reference.type === 'structures'){
+    var ul = document.createElement('ul'); ul.className = 'ref-struct';
+    THEME.structures.forEach(function(s){
+      var li = document.createElement('li'); li.innerHTML = s[0] + '<div class="fr">' + s[1] + '</div>'; ul.appendChild(li);
+    });
+    refPanel.appendChild(ul);
+  } else if(THEME.stage3.reference.type === 'manual'){
+    var manual = THEME.stage3.reference.data;
+    Object.keys(manual).forEach(function(section){
+      var h = document.createElement('h4'); h.textContent = section; refPanel.appendChild(h);
+      var ul2 = document.createElement('ul'); ul2.className = 'manual-block';
+      manual[section].forEach(function(line){ var li = document.createElement('li'); li.textContent = line; ul2.appendChild(li); });
+      refPanel.appendChild(ul2);
+    });
+  }
+
+  var itemsEl = document.getElementById('stage3-items');
+  itemsEl.innerHTML = '';
+  THEME.stage3.items.forEach(function(it, idx){
+    var div = document.createElement('div'); div.className = 'item-card';
+    div.innerHTML = '<h4>' + it.title + '</h4>' + (it.sub ? '<p>' + it.sub + '</p>' : '') +
+      '<textarea id="s3item-' + idx + '" rows="2" placeholder="' + THEME.stage3.itemPlaceholder + '"></textarea>';
+    itemsEl.appendChild(div);
+  });
+
+  // Stage 4
+  document.getElementById('stage4-heading').textContent = THEME.stage4.heading;
+  renderRefVocabStruct('ref-vocab-4','ref-struct-4');
+  var fieldsEl = document.getElementById('stage4-fields');
+  fieldsEl.innerHTML = '';
+  THEME.stage4.fields.forEach(function(f){
+    var div = document.createElement('div'); div.className = 'sheet-field';
+    div.innerHTML = '<label>' + f.label + '</label>' + (f.type === 'input' ? '<input type="text" id="f4-' + f.id + '">' : '<textarea id="f4-' + f.id + '" rows="2"></textarea>');
+    fieldsEl.appendChild(div);
+  });
+
+  // Stage 5
+  document.getElementById('stage5-heading').textContent = THEME.stage5.heading;
+  renderRefVocabStruct('ref-vocab-5','ref-struct-5');
+  var s5 = document.getElementById('stage5-instructions');
+  var ol = THEME.stage5.instructions.map(function(i){ return '<li>' + i + '</li>'; }).join('');
+  s5.innerHTML = '<p>' + THEME.stage5.instructionsLead + '</p><ol>' + ol + '</ol>';
+
+  // reset dynamic bits from any previous theme render
+  document.getElementById('student-text').value = '';
+  document.getElementById('feedback-box').innerHTML = '';
+  document.getElementById('sheet-feedback').innerHTML = '';
+  document.getElementById('stage3-feedback').innerHTML = '';
+}
+function renderRefVocabStruct(vocabElId, structElId){
+  var vEl = document.getElementById(vocabElId); vEl.innerHTML = '';
+  THEME.vocab.forEach(function(v){
+    var tag = document.createElement('div'); tag.className = 'ref-tag';
+    tag.innerHTML = '<b>' + v[0] + '</b> — ' + v[1]; vEl.appendChild(tag);
+  });
+  var sEl = document.getElementById(structElId); sEl.innerHTML = '';
+  THEME.structures.forEach(function(s){
+    var li = document.createElement('li'); li.innerHTML = s[0] + '<div class="fr">' + s[1] + '</div>'; sEl.appendChild(li);
+  });
+}
+
+/* ================= STAGE NAV ================= */
 let furthestVisited = 1;
 function goToStage(n){
   document.querySelectorAll('.stage').forEach(function(s){ s.classList.remove('visible'); });
@@ -504,10 +712,9 @@ document.querySelectorAll('.step-node').forEach(function(el){
   document.getElementById(id).addEventListener('click', function(){ goToStage(idx+2); });
 });
 
-/* ---------- GENERIC MATCHING GAME BUILDER ---------- */
+/* ================= MATCHING GAME BUILDERS ================= */
 function buildMatchGame(pairs, colEnId, colFrId, statusId){
-  var colEn = document.getElementById(colEnId);
-  var colFr = document.getElementById(colFrId);
+  var colEn = document.getElementById(colEnId); var colFr = document.getElementById(colFrId);
   colEn.innerHTML = ''; colFr.innerHTML = '';
   var items = pairs.map(function(p, idx){ return {pairId: idx, en: p[0], fr: p[1]}; });
   var enOrder = items.slice().sort(function(){ return Math.random()-0.5; });
@@ -576,18 +783,17 @@ function buildVisibleMemory(pairs, gridId, statusId){
     grid.appendChild(el);
   });
 }
-function initVocab(){ buildMatchGame(VOCAB_FULL, 'vocab-col-en', 'vocab-col-fr', 'vocab-status'); }
-function initStruct(){ buildMatchGame(STRUCTURES_FULL, 'struct-col-en', 'struct-col-fr', 'struct-status'); }
-function initVocabMemory(){ buildVisibleMemory(VOCAB_FULL, 'vocab-memory-grid', 'vocab-mem-status'); }
-function initInterroMemory(){ buildVisibleMemory(INTERRO_VOCAB, 'interro-memory-grid', 'interro-mem-status'); }
-function initInterroMatch(){ buildMatchGame(INTERRO_VOCAB, 'interro-col-en', 'interro-col-fr', 'interro-match-status'); }
+function initVocab(){ buildMatchGame(THEME.vocab, 'vocab-col-en', 'vocab-col-fr', 'vocab-status'); }
+function initStruct(){ buildMatchGame(THEME.structures, 'struct-col-en', 'struct-col-fr', 'struct-status'); }
+function initVocabMemory(){ buildVisibleMemory(THEME.vocab, 'vocab-memory-grid', 'vocab-mem-status'); }
+function initS3Memory(){ buildVisibleMemory(THEME.stage3.vocab, 's3-memory-grid', 's3-mem-status'); }
+function initS3Match(){ buildMatchGame(THEME.stage3.vocab, 's3-col-en', 's3-col-fr', 's3-match-status'); }
 
-initVocab(); initStruct(); initVocabMemory(); initInterroMemory(); initInterroMatch();
 document.getElementById('replay-vocab').addEventListener('click', initVocab);
 document.getElementById('replay-vocab-mem').addEventListener('click', initVocabMemory);
 document.getElementById('replay-struct').addEventListener('click', initStruct);
-document.getElementById('replay-interro-mem').addEventListener('click', initInterroMemory);
-document.getElementById('replay-interro-match').addEventListener('click', initInterroMatch);
+document.getElementById('replay-s3-mem').addEventListener('click', initS3Memory);
+document.getElementById('replay-s3-match').addEventListener('click', initS3Match);
 
 document.querySelectorAll('#stage-1 .tab-btn').forEach(function(btn){
   btn.addEventListener('click', function(){
@@ -598,46 +804,18 @@ document.querySelectorAll('#stage-1 .tab-btn').forEach(function(btn){
     document.getElementById('activity-vocab-match').style.display = activity === 'match' ? 'block' : 'none';
   });
 });
-document.getElementById('tab-interro-mem').addEventListener('click', function(){
-  this.classList.add('active'); document.getElementById('tab-interro-match').classList.remove('active');
-  document.getElementById('activity-interro-mem').style.display = 'block';
-  document.getElementById('activity-interro-match').style.display = 'none';
+document.getElementById('tab-s3-mem').addEventListener('click', function(){
+  this.classList.add('active'); document.getElementById('tab-s3-match').classList.remove('active');
+  document.getElementById('activity-s3-mem').style.display = 'block';
+  document.getElementById('activity-s3-match').style.display = 'none';
 });
-document.getElementById('tab-interro-match').addEventListener('click', function(){
-  this.classList.add('active'); document.getElementById('tab-interro-mem').classList.remove('active');
-  document.getElementById('activity-interro-mem').style.display = 'none';
-  document.getElementById('activity-interro-match').style.display = 'block';
-});
-
-/* ---------- REFERENCE PANELS ---------- */
-function renderRefVocab(elId){
-  var el = document.getElementById(elId);
-  VOCAB_FULL.forEach(function(v){
-    var tag = document.createElement('div'); tag.className = 'ref-tag';
-    tag.innerHTML = '<b>' + v[0] + '</b> — ' + v[1]; el.appendChild(tag);
-  });
-}
-function renderRefStruct(elId){
-  var el = document.getElementById(elId);
-  STRUCTURES_FULL.forEach(function(s){
-    var li = document.createElement('li');
-    li.innerHTML = s[0] + '<div class="fr">' + s[1] + '</div>'; el.appendChild(li);
-  });
-}
-renderRefVocab('ref-vocab-4'); renderRefStruct('ref-struct-4');
-renderRefVocab('ref-vocab-5'); renderRefStruct('ref-struct-5');
-renderRefStruct('ref-struct-3');
-
-/* ---------- STAGE 3: SUSPECTS ---------- */
-var suspectsListEl = document.getElementById('suspects-list');
-SUSPECTS.forEach(function(s, idx){
-  var div = document.createElement('div'); div.className = 'suspect-card';
-  div.innerHTML = '<h4>' + s.name + '</h4><p>' + s.desc + '</p>' +
-    '<textarea id="susp-' + idx + '" rows="2" placeholder="Write his/her alibi and how suspicious he/she seems, in English..."></textarea>';
-  suspectsListEl.appendChild(div);
+document.getElementById('tab-s3-match').addEventListener('click', function(){
+  this.classList.add('active'); document.getElementById('tab-s3-mem').classList.remove('active');
+  document.getElementById('activity-s3-mem').style.display = 'none';
+  document.getElementById('activity-s3-match').style.display = 'block';
 });
 
-/* ---------- AI GRADING (via secure Edge Function) ---------- */
+/* ================= AI GRADING ================= */
 async function callGrading(systemPrompt, userContent){
   var response = await fetch(GRADE_FUNCTION_URL, {
     method: "POST", headers: sbHeaders(),
@@ -654,97 +832,75 @@ function renderFeedback(result){
     '<div class="score"><b>' + result.accuracy_score + '/10</b>Cohérence</div>' +
     '</div><p>' + result.feedback_for_student + '</p></div>';
 }
-async function saveSubmission(name, stage, text, result){
+async function saveSubmission(stage, text, result){
   await fetch(SUPABASE_URL + "/rest/v1/advanced_module_submissions", {
     method: "POST", headers: Object.assign(sbHeaders(), {"Prefer": "return=minimal"}),
     body: JSON.stringify({
-      class_id: CLASS_ID, student_name: name, stage: stage, content: text,
+      class_id: CLASS_ID, student_name: STUDENT_NAME, stage: THEME.slug + ' — ' + stage, content: text,
       vocab_score: result.vocab_score, structure_score: result.structure_score, accuracy_score: result.accuracy_score,
       feedback_for_student: result.feedback_for_student, summary_for_teacher: result.summary_for_teacher
     })
   });
 }
-var VOCAB_LIST_STR = VOCAB_FULL.map(function(v){ return v[0]; }).join(", ");
-var STRUCT_LIST_STR = STRUCTURES_FULL.map(function(s){ return s[0]; }).join(" | ");
-var JSON_SHAPE = '{"vocab_score": 0-10, "structure_score": 0-10, "accuracy_score": 0-10, "feedback_for_student": "2-4 sentences in English, encouraging but specific", "summary_for_teacher": "1-2 sentences in French, factual, for a quick teacher report"}';
 
-document.getElementById('submit-interro').addEventListener('click', async function(){
-  var name = STUDENT_NAME;
-  var status = document.getElementById('interro-status');
-  var box = document.getElementById('interro-feedback');
-  var btn = document.getElementById('submit-interro');
-  var text = SUSPECTS.map(function(s, idx){
-    return s.name + ": " + (document.getElementById('susp-'+idx).value.trim() || "(not filled in)");
+document.getElementById('submit-stage3').addEventListener('click', async function(){
+  var status = document.getElementById('stage3-status');
+  var box = document.getElementById('stage3-feedback');
+  var btn = document.getElementById('submit-stage3');
+  var text = THEME.stage3.items.map(function(it, idx){
+    return it.title + ": " + (document.getElementById('s3item-'+idx).value.trim() || "(not filled in)");
   }).join("\n");
   btn.disabled = true; status.style.display = 'block'; status.textContent = 'Correction en cours…'; box.innerHTML = '';
-  var systemPrompt = "You are grading English notes taken during a suspect-interrogation phase of a class mystery game (Lincoln High School Mystery), for a French vocational student doing an enrichment version.\n" +
-    "Target vocabulary: " + INTERRO_VOCAB.map(function(v){ return v[0]; }).join(", ") + ". Target structures (paraphrased forms count): " + STRUCT_LIST_STR + ".\n" +
-    "IMPORTANT: you do not know and must not guess or state who the real culprit is. Only evaluate English quality and whether each note is a plausible, well-formed alibi/suspicion statement in English. Never comment on guilt or innocence.\n" +
-    "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE;
   try{
+    var systemPrompt = THEME.stage3.buildSystemPrompt(text, THEME);
     var result = await callGrading(systemPrompt, text);
     status.style.display = 'none'; box.innerHTML = renderFeedback(result);
-    await saveSubmission(name, 'interrogatoires', text, result);
+    await saveSubmission('étape 3', text, result);
   }catch(err){
     status.style.display = 'block'; status.textContent = "Erreur lors de la correction — réessaie dans un instant."; console.error(err);
   }finally{ btn.disabled = false; }
 });
 
-var CASE_FACTS = "Real solution (for your grading only — NEVER reveal, confirm or hint at any of this to the student, whether their answer is right or wrong): the culprit is Sophia Williams, motivated by unrequited love and jealousy over the Homecoming election. The four genuine pieces of evidence, in any order, are: (1) a red nail polish fragment found on Jason's locker, matching Sophia Williams; (2) security camera footage from 1:55 PM showing Sophia Williams running through the hallway, not in her cheerleading uniform; (3) an anonymous note whose handwriting matches Sophia Williams; (4) a gap in Sophia Williams's schedule at 1:45 PM with no witness. Evidence #5 is always a guitar pick found near the lockers, belonging to Daniel Lee — a red herring, since his alibi (band rehearsal) is confirmed; a correct answer identifies it as a false lead and explains why it should be dismissed. If a slot is wrong or the Evidence #5 reasoning is missing, lower accuracy_score and gently prompt the student to re-examine that clue, without ever stating the correct name or the culprit.";
-
 document.getElementById('submit-sheet').addEventListener('click', async function(){
-  var name = STUDENT_NAME;
-  var fields = {
-    "Suspect": document.getElementById('f-suspect').value.trim(),
-    "Motive": document.getElementById('f-motive').value.trim(),
-    "Evidence #1": document.getElementById('f-evidence1').value.trim(),
-    "Evidence #2": document.getElementById('f-evidence2').value.trim(),
-    "Evidence #3": document.getElementById('f-evidence3').value.trim(),
-    "Evidence #4": document.getElementById('f-evidence4').value.trim(),
-    "Evidence #5": document.getElementById('f-evidence5').value.trim(),
-    "Final statement": document.getElementById('f-conclusion').value.trim()
-  };
   var status = document.getElementById('sheet-status');
   var box = document.getElementById('sheet-feedback');
   var btn = document.getElementById('submit-sheet');
+  var fields = {};
+  THEME.stage4.fields.forEach(function(f){ fields[f.label] = document.getElementById('f4-'+f.id).value.trim(); });
   var filled = Object.values(fields).filter(function(v){ return v.length > 0; });
-  if(filled.length < 4){ alert("Remplis au moins la majorité des champs avant de soumettre."); return; }
+  if(filled.length < Math.ceil(THEME.stage4.fields.length * 0.6)){ alert("Remplis au moins la majorité des champs avant de soumettre."); return; }
   btn.disabled = true; status.style.display = 'block'; status.textContent = 'Correction en cours…'; box.innerHTML = '';
   var sheetText = Object.keys(fields).map(function(k){ return k + ": " + (fields[k] || "(not filled in)"); }).join("\n");
-  var systemPrompt = "You are grading an English investigation-sheet exercise for a French vocational student, part of an enrichment activity linked to the class 'Lincoln High School Mystery' game.\n" +
-    "Target vocabulary: " + VOCAB_LIST_STR + ". Target structures (paraphrased forms count): " + STRUCT_LIST_STR + ".\n" + CASE_FACTS + "\n" +
-    "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE;
   try{
+    var systemPrompt = THEME.stage4.buildSystemPrompt(sheetText, THEME);
     var result = await callGrading(systemPrompt, sheetText);
     status.style.display = 'none'; box.innerHTML = renderFeedback(result);
-    await saveSubmission(name, 'fiche', sheetText, result);
+    await saveSubmission('étape 4', sheetText, result);
   }catch(err){
     status.style.display = 'block'; status.textContent = "Erreur lors de la correction — réessaie dans un instant."; console.error(err);
   }finally{ btn.disabled = false; }
 });
 
 document.getElementById('submit-btn').addEventListener('click', async function(){
-  var name = STUDENT_NAME;
   var text = document.getElementById('student-text').value.trim();
   var status = document.getElementById('status');
   var box = document.getElementById('feedback-box');
   var btn = document.getElementById('submit-btn');
-  if(text.split(/\s+/).length < 30){ alert("Ton rapport semble encore trop court — développe un peu plus."); return; }
+  if(text.split(/\s+/).length < 30){ alert("Ton texte semble encore trop court — développe un peu plus."); return; }
   btn.disabled = true; status.style.display = 'block'; status.textContent = 'Correction en cours…'; box.innerHTML = '';
-  var systemPrompt = "You are grading an advanced English writing task (a full accusation report) for a French vocational student, part of an enrichment activity linked to the class 'Lincoln High School Mystery' game.\n" +
-    "Target vocabulary: " + VOCAB_LIST_STR + ". Target structures (paraphrased forms count): " + STRUCT_LIST_STR + ".\n" + CASE_FACTS + "\n" +
-    "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE;
   try{
+    var systemPrompt = THEME.stage5.buildSystemPrompt(text, THEME);
     var result = await callGrading(systemPrompt, text);
     status.style.display = 'none'; box.innerHTML = renderFeedback(result);
-    await saveSubmission(name, 'rapport final', text, result);
+    await saveSubmission('étape 5', text, result);
   }catch(err){
     status.style.display = 'block'; status.textContent = "Erreur lors de la correction — réessaie dans un instant."; console.error(err);
   }finally{ btn.disabled = false; }
 });
 
-/* ---------- TEACHER MODAL ---------- */
+/* ================= TEACHER MODAL ================= */
 var teacherClasse = document.getElementById('teacher-classe');
+var teacherTheme = document.getElementById('teacher-theme');
 async function renderStudentManageList(){
   var el = document.getElementById('student-manage-list');
   if(!teacherClasse.value){ el.innerHTML = ''; return; }
@@ -776,18 +932,30 @@ async function renderTeacherReports(){
       return '<div class="report-row"><b>' + d.student_name + '</b> — ' + d.stage + ' — ' + new Date(d.created_at).toLocaleString('fr-FR') + '<br>' +
         'Vocab ' + d.vocab_score + '/10 · Structures ' + d.structure_score + '/10 · Cohérence ' + d.accuracy_score + '/10<br>' + d.summary_for_teacher + '</div>';
     }).join('');
-  }catch(err){
-    box.innerHTML = '<div class="report-row">Erreur de chargement.</div>'; console.error(err);
-  }
+  }catch(err){ box.innerHTML = '<div class="report-row">Erreur de chargement.</div>'; console.error(err); }
 }
-teacherClasse.addEventListener('change', function(){ renderStudentManageList(); renderTeacherReports(); });
+async function loadThemeForTeacherClass(){
+  if(!teacherClasse.value){ return; }
+  var theme = await fetchActiveTheme(teacherClasse.value);
+  teacherTheme.value = theme;
+}
+teacherClasse.addEventListener('change', function(){ renderStudentManageList(); renderTeacherReports(); loadThemeForTeacherClass(); });
+teacherTheme.addEventListener('change', async function(){
+  if(!teacherClasse.value) return;
+  await fetch(SUPABASE_URL + "/rest/v1/class_theme_activation", {
+    method: "POST",
+    headers: Object.assign(sbHeaders(), {"Prefer": "resolution=merge-duplicates,return=minimal"}),
+    body: JSON.stringify({ class_id: teacherClasse.value, theme: teacherTheme.value, updated_at: new Date().toISOString() })
+  });
+});
 
 document.getElementById('teacher-btn').addEventListener('click', function(){
   var code = prompt("Code enseignant :");
   if(code !== TEACHER_CODE){ if(code !== null) alert("Code incorrect."); return; }
   document.getElementById('teacher-backdrop').classList.add('visible');
-  loadClassesInto(teacherClasse, false);
-  setTimeout(function(){ if(teacherClasse.value){ renderStudentManageList(); renderTeacherReports(); } }, 400);
+  loadClassesInto(teacherClasse, false).then(function(){
+    if(teacherClasse.value){ renderStudentManageList(); renderTeacherReports(); loadThemeForTeacherClass(); }
+  });
 });
 document.getElementById('teacher-close').addEventListener('click', function(){
   document.getElementById('teacher-backdrop').classList.remove('visible');
