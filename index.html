@@ -414,7 +414,7 @@ THEMES.cluedo = {
       return "You are grading English notes taken during a suspect-interrogation phase of a class mystery game (Lincoln High School Mystery), for a French vocational student doing an enrichment version.\n" +
         "Target vocabulary: " + theme.stage3.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" +
         "IMPORTANT: you do not know and must not guess or state who the real culprit is. Only evaluate English quality and whether each note is a plausible, well-formed alibi/suspicion statement in English. Never comment on guilt or innocence.\n" +
-        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+        GRADING_PRINCIPLES + " Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
     }
   },
   stage4: {
@@ -433,7 +433,7 @@ THEMES.cluedo = {
       var CASE_FACTS = "Real solution (for your grading only — NEVER reveal, confirm or hint at any of this to the student, whether their answer is right or wrong): the culprit is Sophia Williams, motivated by unrequited love and jealousy over the Homecoming election. The four genuine pieces of evidence, in any order, are: (1) a red nail polish fragment found on Jason's locker, matching Sophia Williams; (2) security camera footage from 1:55 PM showing Sophia Williams running through the hallway, not in her cheerleading uniform; (3) an anonymous note whose handwriting matches Sophia Williams; (4) a gap in Sophia Williams's schedule at 1:45 PM with no witness. Evidence #5 is always a guitar pick found near the lockers, belonging to Daniel Lee — a red herring, since his alibi (band rehearsal) is confirmed; a correct answer identifies it as a false lead and explains why it should be dismissed. If a slot is wrong or the Evidence #5 reasoning is missing, lower accuracy_score and gently prompt the student to re-examine that clue, without ever stating the correct name or the culprit.";
       return "You are grading an English investigation-sheet exercise for a French vocational student, part of an enrichment activity linked to the class 'Lincoln High School Mystery' game.\n" +
         "Target vocabulary: " + theme.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" + CASE_FACTS + "\n" +
-        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+        GRADING_PRINCIPLES + " Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
     }
   },
   stage5: {
@@ -449,7 +449,7 @@ THEMES.cluedo = {
       var CASE_FACTS = "Real solution (for your grading only — NEVER reveal, confirm or hint at any of this to the student): the culprit is Sophia Williams, motivated by unrequited love and jealousy over the Homecoming election. The four genuine pieces of evidence are the nail polish fragment, the security footage, the anonymous note, and the schedule gap, all pointing to Sophia Williams. The guitar pick (belonging to Daniel Lee) is a red herring — his alibi is confirmed.";
       return "You are grading an advanced English writing task (a full accusation report) for a French vocational student, part of an enrichment activity linked to the class 'Lincoln High School Mystery' game.\n" +
         "Target vocabulary: " + theme.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" + CASE_FACTS + "\n" +
-        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+        GRADING_PRINCIPLES + " Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
     }
   }
 };
@@ -505,7 +505,7 @@ THEMES.atwork = {
       return "You are grading English troubleshooting notes written by a French vocational student (electrician track), for an enrichment activity based on this air compressor user manual:\n" + manualStr + "\n" +
         "Target vocabulary: " + theme.stage3.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" +
         "For each problem, judge whether the student's proposed check is plausible and consistent with the manual, and evaluate English quality and vocabulary/structure reuse.\n" +
-        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+        GRADING_PRINCIPLES + " Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
     }
   },
   stage4: {
@@ -523,7 +523,7 @@ THEMES.atwork = {
       var manualStr = Object.keys(manual).map(function(k){ return k + ": " + manual[k].join(" / "); }).join("\n");
       return "You are grading an English maintenance-report exercise written by a French vocational student (electrician track), for an enrichment activity based on this air compressor user manual:\n" + manualStr + "\n" +
         "Target vocabulary: " + theme.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" +
-        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+        GRADING_PRINCIPLES + " Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
     }
   },
   stage5: {
@@ -540,12 +540,13 @@ THEMES.atwork = {
       var manualStr = Object.keys(manual).map(function(k){ return k + ": " + manual[k].join(" / "); }).join("\n");
       return "You are grading an advanced English writing task (a full explanation to a trainee) written by a French vocational student (electrician track), for an enrichment activity based on this air compressor user manual:\n" + manualStr + "\n" +
         "Target vocabulary: " + theme.vocab.map(function(v){return v[0];}).join(", ") + ". Target structures (paraphrased forms count, including first/then/next/finally and be+V-ing): " + theme.structures.map(function(s){return s[0];}).join(" | ") + ".\n" +
-        "Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
+        GRADING_PRINCIPLES + " Return ONLY a JSON object, no markdown, no preamble, with this exact shape:\n" + JSON_SHAPE_STR;
     }
   }
 };
 
-var JSON_SHAPE_STR = '{"vocab_score": 0-10, "structure_score": 0-10, "accuracy_score": 0-10, "feedback_for_student": "2-4 sentences in English, encouraging but specific", "summary_for_teacher": "1-2 sentences in French, factual, for a quick teacher report"}';
+var JSON_SHAPE_STR = '{"vocab_score": 0-10, "structure_score": 0-10, "accuracy_score": 0-10, "feedback_for_student": "2-4 sentences in English. Start by naming ONE thing the student got right (content, a word, a structure). Never use blanket judgments like \'too basic\' or \'too simple\'. Instead, name 2-3 SPECIFIC words or structures from the target list the student did not use yet, and show briefly how one of them could fit into what they already wrote. Tone: a supportive coach pointing to the next step, never a verdict.", "summary_for_teacher": "1-2 sentences in French, factual, for a quick teacher report"}';
+var GRADING_PRINCIPLES = "Grading fairness: score vocab_score and structure_score on how well the student used the target items THEY HAD THE OPPORTUNITY to use given what they wrote, not on an absolute count — a short, simple, fully correct answer is not automatically a low score, but it caps how high vocab_score/structure_score can go since there is less material to demonstrate reuse in. Never let a short answer's vocab/structure score read as a value judgment on the student.";
 
 /* ================= SUPABASE CONFIG ================= */
 var SUPABASE_URL = "https://eyfqryrwivjwwaftehdc.supabase.co";
